@@ -3,7 +3,7 @@ const fs = require("fs");
 class ProductManager {
     static quantity = 0;
     static #products = [];
-    static filePath = "./fs/products.json"; 
+    static filePath = "./products.json"; 
 
     constructor() {
         if (!fs.existsSync(ProductManager.filePath)) {

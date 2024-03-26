@@ -3,7 +3,7 @@ const fs = require("fs");
 class UsersManager {
     static quantity = 0;
     static #users = [];
-    static filePath = "./fs/users.json";
+    static filePath = "./users.json";
 
     constructor() {
         if (!fs.existsSync(UsersManager.filePath)) {
