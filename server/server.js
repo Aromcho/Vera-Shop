@@ -1,41 +1,47 @@
 import express from "express";
-import UsersManager from "./data/fs/UserManager.fs.js";
-const router = express.Router();//server
+import UsersManager from "./data/fs/UserManager.fs.js"
+import router from "./router.js";
+
 
 const server = express();
 const port = 8080;
+
+const usersManager = new UsersManager();
+
 const ready = () => console.log("server ready on port " + port);
 server.listen(port, ready);
- 
-// middlewares 
 
-server.use(express.urlencoded({extended: true }));
+// Middlewares 
+server.use(express.urlencoded({ extended: true }));
+server.use(express.json())
 server.use(router);
 
-//routes 
+// Rutas
 server.get("/", async (req, res) => {
     try {
-        return res.status(200).json({
+        return res.json({
+            statusCode: 200,
             response: "CODER API",
             success: true
         });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.json({
+            statusCode: 500,
             response: "CODER API ERROR",
             success: false
         });
     }
 });
 
-// parametros
-server.get("/api/products/:title/:category", async (req, res) => {
+
+
+server.post("/api/users", async (req, res) => {
     try {
-        const { title, category } = req.params;
-        const data = { title, category }
-        const one = await UsersManager.create(data)
+        const userData = req.body;
+        await usersManager.create(userData);
         return res.status(201).json({
-            response: one,
+            response: "Usuario creado exitosamente",
             success: true
         });
     } catch (error) {
@@ -46,3 +52,9 @@ server.get("/api/products/:title/:category", async (req, res) => {
         });
     }
 });
+
+
+
+
+
+

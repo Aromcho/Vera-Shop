@@ -1,4 +1,5 @@
-import fs from "fs" ;
+// UserManager.fs.js
+import fs from "fs";
 import crypto from "crypto";
 
 class UsersManager {
@@ -6,18 +7,17 @@ class UsersManager {
         this.path = "./data/fs/files/users.json";
         this.init();
     }
+
     init() {
-        const exists = fs.existsSync(this.path)
+        const exists = fs.existsSync(this.path);
         if (!exists) {
             const stringData = JSON.stringify([], null, 2);
             fs.writeFileSync(this.path, stringData);
-            console.log( "archivo creado");
-        }else{
-            console.log("archivo ya exiaste");
+            console.log("Archivo creado");
+        } else {
+            console.log("El archivo ya existe");
         }
-
-        }
-    
+    }
 
     create(data) {
         const user = {
@@ -34,15 +34,13 @@ class UsersManager {
             }
             const users = JSON.parse(fs.readFileSync(this.path));
             users.push(user);
-            fs.writeFileSync(this.path, JSON.stringify(users));
-
-            UsersManager.quantity++; 
+            fs.writeFileSync(this.path, JSON.stringify(users, null, 2));
         } catch (error) {
             console.error("Error al crear el usuario:", error.message);
         }
     }
 
-    readUsers() {
+    read() {
         try {
             return JSON.parse(fs.readFileSync(this.path));
         } catch (error) {
@@ -50,6 +48,7 @@ class UsersManager {
             return [];
         }
     }
+
     readOneUser(email) {
         try {
             const users = JSON.parse(fs.readFileSync(this.path));
@@ -63,6 +62,7 @@ class UsersManager {
             return null;
         }
     }
+
     destroyUser(email) {
         try {
             let users = JSON.parse(fs.readFileSync(this.path));
@@ -80,11 +80,5 @@ class UsersManager {
 }
 
 
-const usersManager = new UsersManager();
 
-usersManager.create({ photo: "user1.jpg", email: "usuario1@example.com", password: "123456", role: "admin" });
-usersManager.createUser({ photo: "user2.jpg", email: "usuario2@example.com", password: "password123", role: "user" });
-usersManager.createUser({ photo: "", email: "usuario3@example.com", password: "abc123", role: "user" });
-usersManager.createUser({ email: "usuario4@example.com", password: "26398322", role: "user" });
-export default usersManager
-
+export default UsersManager;
