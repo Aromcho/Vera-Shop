@@ -3,7 +3,7 @@ import crypto from "crypto";
 
 class ProductManager {
     constructor() {
-        this.path = "./data/fs/files/product.json"
+        this.path = "./src/data/fs/files/product.json"
         this.init();
     }
 
@@ -70,28 +70,48 @@ class ProductManager {
             return null;
         }
     }
-
-    destroy(id) {
+    async update(id, newData) {
         try {
             let products = JSON.parse(fs.readFileSync(this.path));
-
+    
             const index = products.findIndex(product => product.id === id);
-
+    
             if (index === -1) {
                 throw new Error("Producto no encontrado.");
             }
-
+            newData.id = id;
+            products[index] = newData;
+    
+            fs.writeFileSync(this.path, JSON.stringify(products, null, 2));
+    
+            return newData;
+        } catch (error) {
+            console.error("Error al actualizar el producto:", error.message);
+            return null;
+        }
+    }
+    
+    async destroy(id) {
+        try {
+            let products = JSON.parse(fs.readFileSync(this.path));
+    
+            const index = products.findIndex(product => product.id === id);
+    
+            if (index === -1) {
+                throw new Error("Producto no encontrado.");
+            }
+    
             const deletedProduct = products.splice(index, 1)[0];
-
-            fs.writeFileSync(ProductManager.filePath, JSON.stringify(products));
-
-            ProductManager.quantity--; 
+    
+            await fs.promises.writeFile(this.path, JSON.stringify(products));
+    
             return deletedProduct;
         } catch (error) {
             console.error("Error al eliminar el producto:", error.message);
             return null;
         }
     }
+    
 }
 
 const productManager = new ProductManager();

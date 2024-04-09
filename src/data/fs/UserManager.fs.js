@@ -3,7 +3,7 @@ import crypto from "crypto";
 
 class UsersManager {
     constructor() {
-        this.path = "./data/fs/files/users.json";
+        this.path = "./src/data/fs/files/users.json";
         this.init();
     }
 
@@ -48,7 +48,7 @@ class UsersManager {
         try {
             let all = await fs.promises.readFile(this.path, "utf-8");
             all = JSON.parse(all);
-            cat && (all = all.filter((each) => each.role === role));
+            role && (all = all.filter((each) => each.role === role));
             return all;
 
         } catch (error) {
@@ -104,10 +104,10 @@ class UsersManager {
 }
 const userManager = new UsersManager();
 
-userManager.create({ photo: "user1.jpg", email: "usuario1@example.com", password: "123456", role: "admin", photo: "",age: "" });
-userManager.create({ photo: "user2.jpg", email: "usuario2@example.com", password: "password123", role: "user", photo: "",age: ""});
-userManager.create({ photo: "", email: "usuario3@example.com", password: "abc123", role: "user", photo: "",age: "" });
-userManager.create({ email: "usuario4@example.com", password: "26398322", role: "user", photo: "",age: "" });
+//userManager.create({ photo: "user1.jpg", email: "usuario1@example.com", password: "123456", role: "admin", photo: "",age: "" });
+//userManager.create({ photo: "user2.jpg", email: "usuario2@example.com", password: "password123", role: "user", photo: "",age: ""});
+//userManager.create({ photo: "", email: "usuario3@example.com", password: "abc123", role: "user", photo: "",age: "" });
+//userManager.create({ email: "usuario4@example.com", password: "26398322", role: "user", photo: "",age: "" });
 
 export default userManager;
 
