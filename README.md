@@ -40,3 +40,28 @@ git clone https://github.com/tu-usuario/tu-repositorio.git
 - [fs](https://www.fs.com) (para almacenamiento en archivos en file y en memory)
 - [Handlebars](https://handlebarsjs.com)
 
+### Implementacio de enrutamiento externo
+
+separe cada ruta por usuarios y producto
+ - aca dejo el archivo server.js:
+
+import express from "express";
+import indexRouter from "./src/router/index.router.js";
+import errorHandler from "./src/middlewares/errorHandler.mid.js";
+import pathHandler from "./src/middlewares/pathHandler.mid.js";
+import __dirname from "./utils.js";
+
+const server = express();
+const port = 8080;
+const ready = () => console.log("server ready on port " + port);
+server.listen(port, ready);
+ - hice las rutas mas cortas y facil de leer y escalas gracias a el enrutamiento extremo
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+server.use("/arom", express.static("arom"));
+server.use(express.static(__dirname + "/public"));
+
+
+server.use("/", indexRouter);
+server.use(errorHandler);
+server.use(pathHandler);
