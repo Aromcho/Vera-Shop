@@ -42,26 +42,10 @@ git clone https://github.com/tu-usuario/tu-repositorio.git
 
 ### Implementacio de enrutamiento externo
 
-separe cada ruta por usuarios y producto
- - aca dejo el archivo server.js:
+hice las vistas con handlebars
 
-import express from "express";
-import indexRouter from "./src/router/index.router.js";
-import errorHandler from "./src/middlewares/errorHandler.mid.js";
-import pathHandler from "./src/middlewares/pathHandler.mid.js";
-import __dirname from "./utils.js";
+desarrolle un frontend con boostrap y implemente un filtrado por categorias colocando las rutas /product/?category=Ropa, /product/?category=Calzado y /product/?category=Accesorios y el boton de "todos" muestra todos los productos
 
-const server = express();
-const port = 8080;
-const ready = () => console.log("server ready on port " + port);
-server.listen(port, ready);
- - hice las rutas mas cortas y facil de leer y escalas gracias a el enrutamiento extremo
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
-server.use("/arom", express.static("arom"));
-server.use(express.static(__dirname + "/public"));
+tambien integre formulario con los imputs para subir los productos (todavia con es funcional)
 
-
-server.use("/", indexRouter);
-server.use(errorHandler);
-server.use(pathHandler);
+ 

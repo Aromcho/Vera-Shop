@@ -11,11 +11,11 @@ const port = 8080;
 
 server.engine("handlebars", engine());
 server.set("view engine", "handlebars");
-server.set("views", path.join(__dirname, "src/views"));
+server.set("views", __dirname+"/src/views");
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-server.use("/arom", express.static("arom"));
+server.use("/public", express.static("public"));
 server.use(express.static(path.join(__dirname, "/public")));
 
 server.use("/", indexRouter);
