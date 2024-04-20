@@ -5,24 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>{{title}}</title>
+        <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .hero {
+            background-image: url('https://cdn.pixabay.com/photo/2017/08/01/00/38/man-2562325_960_720.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            height: 100vh;
+        }
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 100%;
+        }
+        .bg-dark {
+            background-color: #343a40 !important;
+        }
+        .gradient-custom {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+        .card-custom {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-custom {
+            border: none;
+            transition: transform 0.3s ease;
+        }
+        .btn-custom:hover {
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
 <body class="bg-secondary-subtle">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">MiWebSite</a>
+        <a class="navbar-brand" href="/">MiWebSite</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Product</a>
+                    <a class="nav-link active" aria-current="page" href="/products/real">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Users</a>
+                    <a class="nav-link" href="/users">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">register</a>
+                    <a class="nav-link" href="/users/register">register</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">login</a>
@@ -35,41 +71,11 @@
         </div>
     </div>
 </nav>
-<div class="container mt-5">
-    <div class="row align-items-center">
-        <div class="col-md-6 p-5" style="background: linear-gradient(to right, #6a11cb, #2575fc);">
-            <h2 class="text-white">¡Aumenta tus ventas con nuestros productos!</h2>
-            <p class="text-white">Descubre cómo podemos ayudarte a crecer con las mejores herramientas y servicios disponibles.</p>
-        </div>
-        <div class="col-md-6 p-5 bg-dark text-white" >
-            <form>
-                <h4 class="mb-3">Subir Producto</h4>
-                <div class="mb-3">
-                    <label for="productName" class="form-label">Nombre del Producto</label>
-                    <input type="text" class="form-control" id="productName" placeholder="Introduce el nombre">
-                </div>
-                <div class="mb-3">
-                    <label for="productPrice" class="form-label">Precio</label>
-                    <input type="text" class="form-control" id="productPrice" placeholder="Precio en USD">
-                </div>
-                <div class="mb-3">
-                    <label for="productCategory" class="form-label">Categoría</label>
-                    <select class="form-select" id="productCategory">
-                        <option selected>Elige una categoría</option>
-                        <option value="1">Electrónica</option>
-                        <option value="2">Libros</option>
-                        <option value="3">Ropa</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Subir Producto</button>
-            </form>
-        </div>
-    </div>
 </div>
 
 
     {{{body}}}
-    <footer class="bg-dark text-center text-white p-3 mt-auto">
+    <footer class="bg-dark text-center text-white p-3 mt-3">
     <div class="container">
         <section class="mb-4">
             
@@ -110,18 +116,6 @@
         </div>
     </div>
 </footer>
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const currentCategory = new URLSearchParams(window.location.search).get('category') || 'todos';
-
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim().toLowerCase() === currentCategory.toLowerCase()) {
-      link.classList.add('active');
-    }
-  });
-});
-</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
