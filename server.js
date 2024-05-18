@@ -23,10 +23,6 @@ nodeServer.listen(port, ready);
 
 
 
-// Handlebars
-server.engine("handlebars", engine());
-server.set("view engine", "handlebars");
-server.set("views", path.join(__dirname, "src/views"));
 
 //
 const socketServer = new Server(nodeServer);
@@ -37,9 +33,12 @@ export { socketServer };
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use("/public", express.static("public"));
-server.use(express.static(path.join(__dirname, "/public")));
+server.use(express.static(__dirname + "/public"));
 
 // Rutas y middleware de manejo de errores
 server.use("/", indexRouter);
 server.use(errorHandler);
+server.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  });
 server.use(pathHandler);

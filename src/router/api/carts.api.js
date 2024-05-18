@@ -1,10 +1,10 @@
 import express from "express";
 import cartManager from "../../data/mongo/managers/CartManager.mongo.js";
 
-const cartRouter = express.Router();
+const cartsRouter = express.Router();
 
 // Ruta para obtener todos los elementos del carrito
-cartRouter.get("/", async (req, res) => {
+cartsRouter.get("/", async (req, res) => {
     try {
         const cartItems = await cartManager.read();
         res.json(cartItems);
@@ -14,7 +14,7 @@ cartRouter.get("/", async (req, res) => {
 });
 
 // Ruta para agregar un nuevo elemento al carrito
-cartRouter.post("/", async (req, res) => {
+cartsRouter.post("/", async (req, res) => {
     try {
         const cartItemData = req.body;
         const newCartItem = await cartManager.create(cartItemData);
@@ -25,7 +25,7 @@ cartRouter.post("/", async (req, res) => {
 });
 
 // Ruta para agregar un producto al carrito por su ID
-cartRouter.post("/add-to-cart/:id", async (req, res) => {
+cartsRouter.post("/add-to-cart/:id", async (req, res) => {
     try {
         const productId = req.params.id;
         // Aquí podrías obtener el user_id del usuario que está realizando la solicitud,
@@ -45,7 +45,7 @@ cartRouter.post("/add-to-cart/:id", async (req, res) => {
 });
 
 // Ruta para obtener un elemento específico del carrito por su ID
-cartRouter.get("/:id", async (req, res) => {
+cartsRouter.get("/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const cartItem = await cartManager.readOne(id);
@@ -60,7 +60,7 @@ cartRouter.get("/:id", async (req, res) => {
 });
 
 // Ruta para actualizar un elemento específico del carrito por su ID
-cartRouter.put("/:id", async (req, res) => {
+cartsRouter.put("/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const newData = req.body;
@@ -76,7 +76,7 @@ cartRouter.put("/:id", async (req, res) => {
 });
 
 // Ruta para eliminar un elemento específico del carrito por su ID
-cartRouter.delete("/:id", async (req, res) => {
+cartsRouter.delete("/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const deletedCartItem = await cartManager.destroy(id);
@@ -90,4 +90,4 @@ cartRouter.delete("/:id", async (req, res) => {
     }
 });
 
-export default cartRouter;
+export default cartsRouter;

@@ -44,7 +44,7 @@ class Manager {
 
       try {
 
-        const one = await this.Model.findOne({ _id: id }).lean();
+        const one = await this.Model.findOne({ id: id }).lean();
 
         return one;
 

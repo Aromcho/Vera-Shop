@@ -1,20 +1,20 @@
-import { Router } from "express";
-import productManager from "../../data/mongo/managers/ProductManager.mongo.js"
+import { Router } from 'express';
+import productManager from '../../data/mongo/managers/ProductManager.mongo.js';
 
 const productRouter = Router();
 
-productRouter.get("/", read);
-productRouter.get("/:pid", readOne);
-productRouter.post("/", create);
-productRouter.put("/:pid", update);
-productRouter.delete("/:pid", destroy);
+productRouter.get('/', read);
+productRouter.get('/:pid', readOne);
+productRouter.post('/', create);
+productRouter.put('/:pid', update);
+productRouter.delete('/:pid', destroy);
 
 async function create(req, res, next) {
   try {
     const data = req.body;
     const createdProduct = await productManager.create(data);
     return res.status(201).json({
-      message: "Product created successfully",
+      message: 'Product created successfully',
       product: createdProduct,
     });
   } catch (error) {
@@ -29,7 +29,7 @@ async function read(req, res, next) {
     if (products.length > 0) {
       return res.status(200).json(products);
     } else {
-      const error = new Error("Products not found");
+      const error = new Error('Products not found');
       error.statusCode = 404;
       throw error;
     }
@@ -45,7 +45,7 @@ async function readOne(req, res, next) {
     if (product) {
       return res.status(200).json(product);
     } else {
-      const error = new Error("Product not found");
+      const error = new Error('Product not found');
       error.statusCode = 404;
       throw error;
     }
