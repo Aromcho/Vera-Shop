@@ -1,9 +1,10 @@
-import { Router } from 'express';
+import { Router, response } from 'express';
 import productManager from '../../data/mongo/managers/ProductManager.mongo.js';
 
 const productRouter = Router();
 
 productRouter.get('/', read);
+productRouter.get('/paginate', paginate);
 productRouter.get('/:pid', readOne);
 productRouter.post('/', create);
 productRouter.put('/:pid', update);
@@ -54,6 +55,37 @@ async function readOne(req, res, next) {
   }
 }
 
+async function paginate(req, res, next) {
+  try {
+    const filter = {};
+    const opts = {};
+    if (req.query.limit) {
+      opts.limit = req.query.limit;
+    } 
+    if (req.query.page) {
+      opts.page = req.query.page;
+    }
+    
+    if (req.query.category) {
+      filter.category = req.query.category;
+    }
+    const all = await productManager.paginate({ filter, opts });
+    return res.json({
+      statusCode: 200,
+      response: all.docs,
+      info: {
+        totalDocs: all.totalDocs,
+        page: all.page,
+        totalPages: all.totalPages,
+        limit: all.limit,
+        prevPage: all.prevPage,
+        nextPage: all.nextPage
+      }
+    })
+  } catch (error) {
+    return next(error);
+  }
+}
 async function update(req, res, next) {
   try {
     const { pid } = req.params;

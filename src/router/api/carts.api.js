@@ -1,38 +1,39 @@
-import express from "express";
-import cartManager from "../../data/mongo/managers/CartManager.mongo.js";
+import { Router } from 'express';
+import cartManager from '../../data/mongo/managers/CartManager.mongo.js';
 
-const cartsRouter = express.Router();
+const cartsRouter = Router();
 
-// Ruta para obtener todos los elementos del carrito
-cartsRouter.get("/", async (req, res) => {
+cartsRouter.get('/', read);
+cartsRouter.post('/', create);
+cartsRouter.post('/add-to-cart/:pid', addToCart);
+cartsRouter.put('/:id', update);
+cartsRouter.delete('/:id', destroy);
+
+async function read(req, res, next) {
     try {
         const cartItems = await cartManager.read();
         res.json(cartItems);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
-});
+}
 
-// Ruta para agregar un nuevo elemento al carrito
-cartsRouter.post("/", async (req, res) => {
+async function create(req, res, next) {
     try {
         const cartItemData = req.body;
         const newCartItem = await cartManager.create(cartItemData);
         res.status(201).json(newCartItem);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        next(error);
     }
-});
+}
 
-// Ruta para agregar un producto al carrito por su ID
-cartsRouter.post("/add-to-cart/:id", async (req, res) => {
+async function addToCart(req, res, next) {
     try {
         const productId = req.params.id;
-        // Aquí podrías obtener el user_id del usuario que está realizando la solicitud,
-        // por ejemplo, si está autenticado, a través de req.user.id
-        const user_id = "user_id_del_usuario"; // Reemplaza esto con el user_id real
+        const user_id = "a69867dc9cfc7062dfd112e7"; // Reemplaza esto con el user_id real
         const cartItemData = {
-            user_id,
+            user_id: user_id,
             product_id: productId,
             quantity: 1, // Puedes ajustar la cantidad según la solicitud
             state: "reserved" // Estado predeterminado: "reserved"
@@ -40,54 +41,29 @@ cartsRouter.post("/add-to-cart/:id", async (req, res) => {
         const newCartItem = await cartManager.create(cartItemData);
         res.status(201).json(newCartItem);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        next(error);
     }
-});
+}
 
-// Ruta para obtener un elemento específico del carrito por su ID
-cartsRouter.get("/:id", async (req, res) => {
-    try {
-        const { id } = req.params;
-        const cartItem = await cartManager.readOne(id);
-        if (cartItem) {
-            res.json(cartItem);
-        } else {
-            res.status(404).json({ message: "Elemento del carrito no encontrado." });
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Ruta para actualizar un elemento específico del carrito por su ID
-cartsRouter.put("/:id", async (req, res) => {
+async function update(req, res, next) {
     try {
         const { id } = req.params;
         const newData = req.body;
         const updatedCartItem = await cartManager.update(id, newData);
-        if (updatedCartItem) {
-            res.json(updatedCartItem);
-        } else {
-            res.status(404).json({ message: "Elemento del carrito no encontrado." });
-        }
+        res.status(200).json(updatedCartItem);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        next(error);
     }
-});
+}
 
-// Ruta para eliminar un elemento específico del carrito por su ID
-cartsRouter.delete("/:id", async (req, res) => {
+async function destroy(req, res, next) {
     try {
         const { id } = req.params;
         const deletedCartItem = await cartManager.destroy(id);
-        if (deletedCartItem) {
-            res.json(deletedCartItem);
-        } else {
-            res.status(404).json({ message: "Elemento del carrito no encontrado." });
-        }
+        res.status(200).json(deletedCartItem);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
-});
+}
 
 export default cartsRouter;

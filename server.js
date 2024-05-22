@@ -1,5 +1,7 @@
 import "dotenv/config.js"
 import express from "express";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
 import indexRouter from "./src/router/index.router.js";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
@@ -29,7 +31,8 @@ const socketServer = new Server(nodeServer);
 socketServer.on("connection", socketCb);
 export { socketServer };
 
-//
+//midelwares
+server.use(cookieParser());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use("/public", express.static("public"));

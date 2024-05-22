@@ -7,6 +7,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer.
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer.jsx';
 import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
+import Checkout from './components/Checkout/Checkout.jsx';
 
 function App() {
   return (
@@ -17,8 +18,10 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/products/real" element={<ItemListContainer />} />
+        <Route path="/products/real/:category" element={<ItemListContainer />} />
         <Route path="/products/:productId" element={<ItemDetailContainer />} />
         <Route path="/carrito" element={<Carrito />} />
+        <Route path="/ticket" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Image, Badge, Button } from 'react-bootstrap';
 
 const ItemDetail = ({ product }) => {
-  console.log(product);
+    const [cart, setCart] = useState([]);
+  
+    const addToCart = async (product) => {
+      try {
+        const response = await axios.post(`/add-to-cart/${product.id}`);
+        if (response.status === 200) {
+          setCart([...cart, product]);
+        } else {
+          console.error('Error al agregar el producto al carrito');
+        }
+      } catch (error) {
+        console.error('Error al agregar el producto al carrito', error);
+      }
+    };
+  
   return (
     <Container className="my-5 text-white">
       <Row className="align-items-center">
@@ -25,7 +40,7 @@ const ItemDetail = ({ product }) => {
               </Badge>
             </div>
             <Row className="align-items-center">
-              <Button variant="outline-primary" className="col-4">Añadir al carrito</Button>
+            <Button variant="outline-primary" className="col-4" onClick={() => addToCart(product)}>Añadir al carrito</Button>
               <h2 className="col-8 text-end fw-light">Precio: ${product.price}</h2>
             </Row>
           </div>
