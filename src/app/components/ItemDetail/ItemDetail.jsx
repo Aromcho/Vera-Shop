@@ -1,23 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Image, Badge, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 const ItemDetail = ({ product }) => {
-    const [cart, setCart] = useState([]);
-  
-    const addToCart = async (product) => {
-      try {
-        const response = await axios.post(`/add-to-cart/${product.id}`);
-        if (response.status === 200) {
-          setCart([...cart, product]);
-        } else {
-          console.error('Error al agregar el producto al carrito');
-        }
-      } catch (error) {
-        console.error('Error al agregar el producto al carrito', error);
+  const [cart, setCart] = useState([]);
+
+ 
+  const addToCart = async (product) => {
+    try {
+      const userResponse = await axios.get("/api/sessions/online");
+      const userId = userResponse.data.user_id;
+      const response = await axios.post(`/api/cart/`, { product_id: product._id, user_id: userId });
+      if (response.status === 200) {
+        setCart([...cart, product]);
+        Swal.fire({
+          icon: 'success',
+          title: '¡Producto añadido al carrito!',
+          text: `${product.title} se ha añadido a tu carrito.`,
+          confirmButtonText: 'OK'
+        });
+
+      } else {
+        console.error('Error al agregar el producto al carrito');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al agregar el producto al carrito.',
+          confirmButtonText: 'OK'
+        });
       }
-    };
+    } catch (error) {
+      console.error('Error al agregar el producto al carrito', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al agregar el producto al carrito.',
+        confirmButtonText: 'OK'
+      });
+    }
+  };
   
   return (
     <Container className="my-5 text-white">

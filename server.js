@@ -2,10 +2,10 @@ import "dotenv/config.js"
 import express from "express";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import session from "express-session";
 import indexRouter from "./src/router/index.router.js";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
-import { engine } from "express-handlebars";
 import path from "path";
 import { createServer } from "http";
 import { Server } from "socket.io";
@@ -32,7 +32,15 @@ socketServer.on("connection", socketCb);
 export { socketServer };
 
 //midelwares
-server.use(cookieParser());
+server.use(cookieParser(process.env.SECRET));
+server.use(session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000},
+}));
+
+server.use(morgan('dev'));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use("/public", express.static("public"));

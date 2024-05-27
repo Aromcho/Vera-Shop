@@ -48,7 +48,7 @@ desarrolle un frontend con boostrap y implemente un filtrado por categorias colo
 
 tambien integre formulario con los imputs para subir los productos (todavia con es funcional)
 
-## funcionalidades
+## funcionalidades 
 
 - Servidor Express.js
 - Conexión a base de datos

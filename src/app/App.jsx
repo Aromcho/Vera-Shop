@@ -15,8 +15,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Face />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
+        <Route path="/user/login" element={<Login/>} />
+        <Route path="/user/register" element={<Register/>} />
         <Route path="/products/real" element={<ItemListContainer />} />
         <Route path="/products/real/:category" element={<ItemListContainer />} />
         <Route path="/products/:productId" element={<ItemDetailContainer />} />

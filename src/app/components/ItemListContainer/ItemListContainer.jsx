@@ -81,7 +81,7 @@ const [prevPage, setPrevPage] = useState(null);
               <Col key={product.id}>
                 <Card className="h-100 bg-dark text-white">
                   <Card.Img src="https://files.cdn.printful.com/o/upload/bfl-image/42/11354_l_t-shirt-Design-Examples-mockup_Art-with-text.png" alt={product.title} />
-                  <Link className="text-decoration-none text-white" to={`/products/${product.id}`}>
+                  <Link className="text-decoration-none text-white" to={`/products/${product._id}`}>
                     <Card.Body>
                       <Card.Title>{product.title}</Card.Title>
                       <Card.Text>Categoría: {product.category}</Card.Text>

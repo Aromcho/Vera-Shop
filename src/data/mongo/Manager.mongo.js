@@ -28,8 +28,7 @@ class Manager {
 
         //cat para filtrar por categorias
 
-        const all = await this.Model.find(cat).lean();
-
+        const all = await this.Model.find(cat);
         return all;
 
       } catch (error) {
@@ -60,7 +59,7 @@ class Manager {
 
       try {
 
-        const one = await this.Model.findOne({ id: id }).lean();
+        const one = await this.Model.findOne({ _id: id }).lean();
 
         return one;
 
@@ -71,6 +70,24 @@ class Manager {
       }
 
     }
+    
+
+    async readByEmail(email) {
+
+      try {
+
+        const one = await this.Model.findOne({ email });
+
+        return one;
+
+      } catch (error) {
+
+        throw error;
+
+      }
+
+    }
+
 
     async update(id, data) {
 
