@@ -24,8 +24,6 @@ const nodeServer = createServer(server);
 nodeServer.listen(port, ready);
 
 
-
-
 //
 const socketServer = new Server(nodeServer);
 socketServer.on("connection", socketCb);

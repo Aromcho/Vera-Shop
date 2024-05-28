@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {  useContext ,useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Card, Nav, Button } from 'react-bootstrap';
+import { CartContext } from '../../context/CartContext.jsx';
+import './ItemListContainer.css';
+import Swal from 'sweetalert2';
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -9,9 +12,9 @@ const ItemListContainer = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState(null);
-
   const [nextPage, setNextPage] = useState(null);
 const [prevPage, setPrevPage] = useState(null);
+const { addToCart } = React.useContext(CartContext);
 
   const fetchProducts = async () => {
     try {
@@ -80,15 +83,26 @@ const [prevPage, setPrevPage] = useState(null);
             {products.map((product) => (
               <Col key={product.id}>
                 <Card className="h-100 bg-dark text-white">
+                <div className="card-image-wrapper"> 
+                <Button onClick={() => {
+  addToCart(product);
+  Swal.fire(
+    'Producto agregado!',
+    `${product.title} ha sido agregado a tu carrito.`,
+    'success'
+  );
+}} className="add-to-cart-button ">+</Button>
                   <Card.Img src="https://files.cdn.printful.com/o/upload/bfl-image/42/11354_l_t-shirt-Design-Examples-mockup_Art-with-text.png" alt={product.title} />
+                </div>  
                   <Link className="text-decoration-none text-white" to={`/products/${product._id}`}>
                     <Card.Body>
                       <Card.Title>{product.title}</Card.Title>
                       <Card.Text>Categoría: {product.category}</Card.Text>
                       <Card.Text>Precio: ${product.price}</Card.Text>
-                      <Card.Text>Stock: {product.stock}</Card.Text>
                     </Card.Body>
                   </Link>
+                  <Link to={`/products/${product._id}`} className="btn btn-primary mt-2">Ver detalles</Link>
+
                 </Card>
               </Col>
             ))}

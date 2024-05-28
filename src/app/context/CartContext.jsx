@@ -1,41 +1,65 @@
-import { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
-//Creamos un contexto de React llamado CartContext
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [carrito, setCarrito] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
-  const añadirProductoAlCarrito = (productoNuevo) => {
-    const condicion = estaEnElCarrito(productoNuevo.id);
-
-    if (condicion) {
-      //cambiar solamente la cantidad del producto
-      const productosModificados = carrito.map((productoCarrito) => {
-        if (productoCarrito.id === productoNuevo.id) {
-          return {
-            ...productoCarrito,
-            cantidad: productoCarrito.cantidad + productoNuevo.cantidad,
-          };
-        } else {
-          return productoCarrito;
-        }
-      });
-      
-      setCarrito(productosModificados);
-    } else {
-      //añadimos el producto nuevo
-      setCarrito([...carrito, productoNuevo]);
+  const fetchCartItems = async () => {
+    try {
+      const userResponse = await axios.get("/api/sessions/online");
+      const userId = userResponse.data.user_id;
+      const cartResponse = await axios.get(`/api/cart?user_id=${userId}`);
+      const cartItems = cartResponse.data.response;
+      setCartItems(cartItems);
+    } catch (error) {
+      console.error("Error al obtener los productos del carrito", error);
     }
   };
 
-  const estaEnElCarrito = (idProducto) => {
-    const respuesta = carrito.some((producto) => producto.id === idProducto);
-    return respuesta;
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
+
+  const addToCart = async (product) => {
+    try {
+      const userResponse = await axios.get("/api/sessions/online");
+      const userId = userResponse.data.user_id;
+      const response = await axios.post(`/api/cart/`, {
+        product_id: product._id,
+        user_id: userId,
+      });
+      if (response.status === 200) {
+        setCartItems([...cartItems, product]);
+        Swal.fire({
+          icon: "success",
+          title: "¡Producto añadido al carrito!",
+          text: `${product.title} se ha añadido a tu carrito.`,
+          confirmButtonText: "OK",
+        });
+      } else {
+        console.error("Error al agregar el producto al carrito");
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Hubo un error al agregar el producto al carrito.",
+          confirmButtonText: "OK",
+        });
+      }
+    } catch (error) {
+      console.error("Error al agregar el producto al carrito", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Hubo un error al agregar el producto al carrito.",
+        confirmButtonText: "OK",
+      });
+    }
   };
 
   const cantidadTotal = () => {
-    const cantidad = carrito.reduce(
+    const cantidad = cartItems.reduce(
       (total, producto) => total + producto.cantidad,
       0
     );
@@ -43,7 +67,7 @@ const CartProvider = ({ children }) => {
   };
 
   const precioTotal = () => {
-    const total = carrito.reduce(
+    const total = cartItems.reduce(
       (total, producto) => total + producto.cantidad * producto.precio,
       0
     );
@@ -51,21 +75,21 @@ const CartProvider = ({ children }) => {
   };
 
   const borrarProducto = (idProducto) => {
-    const productosFiltrados = carrito.filter(
+    const productosFiltrados = cartItems.filter(
       (producto) => producto.id !== idProducto
     );
-    setCarrito(productosFiltrados);
+    setCartItems(productosFiltrados);
   };
 
   const borrarTodo = () => {
-    setCarrito([]);
+    setCartItems([]);
   };
 
   return (
     <CartContext.Provider
       value={{
-        carrito,
-        añadirProductoAlCarrito,
+        cartItems,
+        addToCart,
         cantidadTotal,
         borrarTodo,
         precioTotal,

@@ -1,34 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useContext } from "react";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { CartContext } from "../../context/CartContext.jsx";
 
 const Cart = () => {
   const [show, setShow] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const { cartItems } = useContext(CartContext); // Consumir el CartContext
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        // Obtén el ID del usuario que está logueado
-        const userResponse = await axios.get("/api/sessions/online");
-        const userId = userResponse.data.user_id;
-
-        // Obtén los productos en el carrito del usuario
-        const cartResponse = await axios.get(`/api/cart?user_id=${userId}`);
-        const cartItems = cartResponse.data.response;
-
-        setCartItems(cartItems);
-      } catch (error) {
-        console.error("Error al obtener los productos del carrito", error);
-      }
-    };
-
-    fetchCartItems();
-  }, []);
 
   return (
     <>

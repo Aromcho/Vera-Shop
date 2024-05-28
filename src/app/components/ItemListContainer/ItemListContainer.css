@@ -44,3 +44,15 @@
     text-align: center;
     margin: 0;
   }
+
+  /*boton sobre la imagen para subir productos al carrito*/
+  .card-image-wrapper {
+    position: relative;
+  }
+  
+  .add-to-cart-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2%;
+  }
