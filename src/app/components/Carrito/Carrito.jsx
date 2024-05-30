@@ -1,14 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { CartContext } from "../../context/CartContext.jsx";
 
 const Cart = () => {
   const [show, setShow] = useState(false);
-  const { cartItems } = useContext(CartContext); // Consumir el CartContext
+  const { cartItems, borrarProducto } = useContext(CartContext); // Consumir el CartContext
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    // Esta función se ejecutará cada vez que cambie el estado de cartItems
+  }, [cartItems]);
 
   return (
     <>
@@ -37,29 +41,38 @@ const Cart = () => {
         {Array.isArray(cartItems) &&
   cartItems.map((item) => (
     <Card className="mb-3" key={item._id}>
-      <Row className="no-gutters">
-        <Col md={4}>
-          <Card.Img
-            variant="top"
-            src="https://files.cdn.printful.com/o/upload/bfl-image/42/11354_l_t-shirt-Design-Examples-mockup_Art-with-text.png"
-          />
-        </Col>
-        <Col md={8}>
-          <Card.Body>
-            {item.product_id && (
-              <>
-                <Card.Title>{item.product_id.title}</Card.Title>
-                <Card.Text>Precio: {item.product_id.price}</Card.Text>
-              </>
-            )}
-            <Card.Text>Cantidad: {item.quantity}</Card.Text>
-            {/* Añade más detalles del producto aquí */}
-          </Card.Body>
-        </Col>
-      </Row>
-    </Card>
+  <Row className="no-gutters">
+    <Col md={4}>
+      <Card.Img
+        variant="top"
+        src="https://files.cdn.printful.com/o/upload/bfl-image/42/11354_l_t-shirt-Design-Examples-mockup_Art-with-text.png"
+      />
+    </Col>
+    <Col md={8}>
+      <Card.Body>
+        {item.product_id && (
+          <>
+            <Card.Title>{item.product_id.title}</Card.Title>
+            <Card.Text>Precio: {item.product_id.price}</Card.Text>
+          </>
+        )}
+        <Card.Text>Cantidad: {item.quantity}</Card.Text>
+        {/* Añade más detalles del producto aquí */}
+      </Card.Body>
+    </Col>
+    <Col md={12}>
+      <Card.Footer className="text-muted d-flex justify-content-end">
+        <Button variant="danger" onClick={() => borrarProducto(item._id)}>Eliminar</Button>
+      </Card.Footer>
+    </Col>
+  </Row>
+</Card>
   ))}
         </Offcanvas.Body>
+        <Offcanvas.Header className="d-flex justify-content-between">
+          <Offcanvas.Title>$ 55000</Offcanvas.Title>
+          <Button variant="success">Ir a pagar</Button>{' '}
+        </Offcanvas.Header>
       </Offcanvas>
     </>
   );

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const CartContext = createContext();
 
@@ -22,16 +23,24 @@ const CartProvider = ({ children }) => {
     fetchCartItems();
   }, []);
 
-  const addToCart = async (product) => {
+  const addToCart = async (product,quantity) => {
     try {
       const userResponse = await axios.get("/api/sessions/online");
       const userId = userResponse.data.user_id;
       const response = await axios.post(`/api/cart/`, {
         product_id: product._id,
         user_id: userId,
+        quantity: quantity,
       });
       if (response.status === 200) {
-        setCartItems([...cartItems, product]);
+        setCartItems([
+          ...cartItems,
+          ...Array(quantity).fill({
+            _id: response.data._id, // Asegúrate de que la respuesta del servidor incluye el id del carrito
+            product_id: product,
+            quantity: quantity,
+          }),
+        ]);
         Swal.fire({
           icon: "success",
           title: "¡Producto añadido al carrito!",
@@ -74,13 +83,21 @@ const CartProvider = ({ children }) => {
     return total;
   };
 
-  const borrarProducto = (idProducto) => {
-    const productosFiltrados = cartItems.filter(
-      (producto) => producto.id !== idProducto
-    );
-    setCartItems(productosFiltrados);
+  const borrarProducto = async (idProducto) => {
+    try {
+      const response = await axios.delete(`/api/cart/${idProducto}`);
+      if (response.status === 200) {
+        const productosFiltrados = cartItems.filter(
+          (producto) => producto._id !== idProducto
+        );
+        setCartItems(productosFiltrados);
+      } else {
+        console.error("Error al eliminar el producto del carrito");
+      }
+    } catch (error) {
+      console.error("Error al eliminar el producto del carrito", error);
+    }
   };
-
   const borrarTodo = () => {
     setCartItems([]);
   };
