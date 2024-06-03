@@ -26,13 +26,13 @@ const Register = (props) => { // Añade props como argumento
     };
 
     try {
-      const response = await axios.post("/api/user", user);
+      const response = await axios.post("/api/sessions/register", user);
       Swal.fire(
         "¡Buen trabajo!",
         "Usuario registrado con éxito",
         "success"
       ).then(() => {
-        window.location.replace("/");
+        props.history.push('/login');
       });
     } catch (error) {
       console.error(error);
