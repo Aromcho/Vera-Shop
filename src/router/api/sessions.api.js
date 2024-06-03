@@ -27,6 +27,8 @@ sessionsRouter.get("/online", async (req, res, next) => {
       return res.status(200).json({
         message: "Is online!",
         user_id: req.session.user_id,
+        role: req.session.role,
+        online: true,
       });
     }
     return res.status(401).json({

@@ -27,6 +27,8 @@ const CartProvider = ({ children }) => {
     try {
       const userResponse = await axios.get("/api/sessions/online");
       const userId = userResponse.data.user_id;
+      const userRole = userResponse.data.role;
+      const online = userResponse.data.online;
       const response = await axios.post(`/api/cart/`, {
         product_id: product._id,
         user_id: userId,
@@ -56,6 +58,7 @@ const CartProvider = ({ children }) => {
           confirmButtonText: "OK",
         });
       }
+
     } catch (error) {
       console.error("Error al agregar el producto al carrito", error);
       Swal.fire({

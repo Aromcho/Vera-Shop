@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { CartContext } from "../../context/CartContext.jsx";
@@ -10,8 +11,9 @@ const Cart = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  useEffect(() => {
+  useEffect(( ) => {
     // Esta función se ejecutará cada vez que cambie el estado de cartItems
+    console.log(cartItems);
   }, [cartItems]);
 
   return (
@@ -71,7 +73,7 @@ const Cart = () => {
         </Offcanvas.Body>
         <Offcanvas.Header className="d-flex justify-content-between">
           <Offcanvas.Title>$ 55000</Offcanvas.Title>
-          <Button variant="success">Ir a pagar</Button>{' '}
+          <Button  as={Link} to="/checkout" variant="success">Ir a pagar</Button>{' '}
         </Offcanvas.Header>
       </Offcanvas>
     </>

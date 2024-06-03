@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom"; // Importa withRouter en lugar de useHistory
 import "./Register.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const Register = () => {
+const Register = (props) => { // Añade props como argumento
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
@@ -32,7 +32,7 @@ const Register = () => {
         "Usuario registrado con éxito",
         "success"
       ).then(() => {
-        window.location.replace("/user/login"); // Redirige al usuario a la página de inicio de sesión
+        window.location.replace("/");
       });
     } catch (error) {
       console.error(error);
@@ -42,6 +42,7 @@ const Register = () => {
         text: "Ha ocurrido un error al intentar registrarse.",
       });
     }
+    props.history.push("/user/login");
   };
 
   return (
@@ -122,7 +123,7 @@ const Register = () => {
                 </Button>
               </Form>
               <Card.Text className="text-center mt-3 text-white-custom">
-                <Link to="/login">¿Ya tienes una cuenta? Inicia sesión</Link>
+                <Link to="/user/login">¿Ya tienes una cuenta? Inicia sesión</Link>
               </Card.Text>
             </Card.Body>
           </Card>

@@ -10,23 +10,24 @@ import Register from "./components/Register/Register.jsx";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 
+
 function App() {
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Face />} />
-          <Route path="/user/login" element={<Login />} />
-          <Route path="/user/register" element={<Register />} />
-          <Route path="/products/real" element={<ItemListContainer />} />
-          <Route path="/products/real/:category" element={<ItemListContainer />}/>
-          <Route path="/products/:productId"element={<ItemDetailContainer />}/>
-          <Route path="/carrito" element={<Carrito />} />
-          <Route path="/ticket" element={<Checkout />} />
-        </Routes>
-      </BrowserRouter>
-    </CartProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Face />} />
+            <Route path="/user/login" element={<Login />} />
+            <Route path="/user/register" element={<Register />} />
+            <Route path="/products/real" element={<ItemListContainer />} />
+            <Route path="/products/real/:category" element={<ItemListContainer />}/>
+            <Route path="/products/:productId"element={<ItemDetailContainer />}/>
+            <Route path="/carrito" element={<Carrito />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
   );
 }
 

@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import ItemDetail from '../ItemDetail/ItemDetail.jsx';
 import axios from 'axios';
+import { CartContext } from '../../context/CartContext.jsx';
 
 function ItemDetailContainer() {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
   const { productId } = useParams();
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -39,7 +41,7 @@ function ItemDetailContainer() {
     <Container className="item-detail-container">
       <Row>
         <Col>
-          <ItemDetail product={product} />
+          <ItemDetail product={product} addToCart={addToCart}/>
         </Col>
       </Row>
     </Container>

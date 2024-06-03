@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -7,11 +7,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Cart from '../Carrito/Carrito.jsx';
-import axios from 'axios'
+import axios from 'axios';
+import { CartContext } from "../../context/CartContext.jsx";
 import Swal from 'sweetalert2';
 
 const NavBar = () => {
   const [isOnline, setIsOnline] = useState(false);
+  const { cartItems } = useContext(CartContext);
 
   useEffect(() => {
     const checkOnlineStatus = async () => {
@@ -77,7 +79,7 @@ const NavBar = () => {
           
           {isOnline ? (
             <>
-            <Cart />
+            <Cart cartItems={cartItems} />
             <Button className="ms-1" as={Link} to="/" onClick={logout} variant="dark">
             Cerrar sesión
           </Button>

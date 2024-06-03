@@ -9,6 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -19,14 +20,15 @@ const Login = () => {
   
     try {
       const response = await axios.post('/api/sessions/login', user);
-      console.log(response);
       Swal.fire(
         '¡Bienvenido!',
         'Has iniciado sesión con éxito.',
         'success'
       ).then(() => {
-        window.location.replace('/'); // Redirige al usuario a la página principal
+        window.location.replace('/');        // Redirige al usuario a la página principal
+        console.log(response);
       });
+
     } catch (error) {
       console.error(error);
       
@@ -64,12 +66,12 @@ const Login = () => {
                   <Form.Control type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
 
-                <Button variant="primary" type="submit" className="w-100 btn-custom">
+                <Button  variant="primary"  type="submit" className="w-100 btn-custom">
                   Iniciar sesión
                 </Button>
               </Form>
               <Card.Text className="text-center mt-3 text-white-custom">
-                <Link to="/register">¿No tienes una cuenta? Regístrate</Link>
+                <Link to="/user/register">¿No tienes una cuenta? Regístrate</Link>
               </Card.Text>
             </Card.Body>
           </Card>

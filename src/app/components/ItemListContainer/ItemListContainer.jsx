@@ -1,10 +1,11 @@
 import React, {  useContext ,useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { Container, Row, Col, Card, Nav, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Nav, Button, ButtonGroup } from 'react-bootstrap';
 import { CartContext } from '../../context/CartContext.jsx';
 import './ItemListContainer.css';
 import Swal from 'sweetalert2';
+import ItemList from '../ItemList/ItemList.jsx';
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -13,8 +14,10 @@ const ItemListContainer = () => {
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState(null);
   const [nextPage, setNextPage] = useState(null);
-const [prevPage, setPrevPage] = useState(null);
-const { addToCart } = React.useContext(CartContext);
+  const [prevPage, setPrevPage] = useState(null);
+  const [totalPages, setTotalPages] = useState(0);
+  const { cartItems, borrarProducto, addToCart } = useContext(CartContext);
+
 
   const fetchProducts = async () => {
     try {
@@ -30,6 +33,7 @@ const { addToCart } = React.useContext(CartContext);
       setProducts(data.response);
       setNextPage(data.info.nextPage);
       setPrevPage(data.info.prevPage);
+      setTotalPages(Math.ceil(data.info.total / 15));
     } catch (error) {
       setError(error.message);
     } finally {
@@ -54,63 +58,7 @@ const { addToCart } = React.useContext(CartContext);
 
   return (
     <>
-      <Nav className="nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style={{ '--bs-nav-link-color': 'var(--bs-white)', '--bs-nav-pills-link-active-color': 'var(--bs-primary)', '--bs-nav-pills-link-active-bg': 'var(--bs-white)' }}>
-        <Nav.Item>
-          <Link to="/products/real">
-            <Nav.Link className="active rounded-5" id="home-tab2" data-bs-toggle="tab" role="tab" aria-selected="true">todos</Nav.Link>
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/products/real/Ropa">
-            <Nav.Link className="rounded-5" id="profile-tab2" data-bs-toggle="tab" role="tab" aria-selected="false">Ropa</Nav.Link>
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/products/real/Calzado">
-            <Nav.Link className="rounded-5" id="contact-tab2" data-bs-toggle="tab" role="tab" aria-selected="false">Calzado</Nav.Link>
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/products/real/Accesorios">
-            <Nav.Link className="rounded-5" id="contact-tab2" data-bs-toggle="tab" role="tab" aria-selected="false">Accesorios</Nav.Link>
-          </Link>
-        </Nav.Item>
-      </Nav>
-      <section>
-        <h1 className="text-center p-4">Lista de Productos</h1>
-        <Container className="mt-4">
-          <Row className="row-cols-1 row-cols-md-4 g-4">
-            {products.map((product) => (
-              <Col key={product.id}>
-                <Card className="h-100 bg-dark text-white">
-                <div className="card-image-wrapper"> 
-                <Button onClick={() => {
-  addToCart(product);
-  Swal.fire(
-    'Producto agregado!',
-    `${product.title} ha sido agregado a tu carrito.`,
-    'success'
-  );
-}} className="add-to-cart-button ">+</Button>
-                  <Card.Img src="https://files.cdn.printful.com/o/upload/bfl-image/42/11354_l_t-shirt-Design-Examples-mockup_Art-with-text.png" alt={product.title} />
-                </div>  
-                  <Link className="text-decoration-none text-white" to={`/products/${product._id}`}>
-                    <Card.Body>
-                      <Card.Title>{product.title}</Card.Title>
-                      <Card.Text>Categoría: {product.category}</Card.Text>
-                      <Card.Text>Precio: ${product.price}</Card.Text>
-                    </Card.Body>
-                  </Link>
-                  <Link to={`/products/${product._id}`} className="btn btn-primary mt-2">Ver detalles</Link>
-
-                </Card>
-              </Col>
-            ))}
-          </Row>
-          <button onClick={() => setPage(prevPage)} disabled={!prevPage}>Anterior</button>
-<button onClick={() => setPage(nextPage)} disabled={!nextPage}>Siguiente</button>
-      </Container>
-      </section>
+    <ItemList setPage={setPage} page={page} totalPages={totalPages} prevPage={prevPage} nextPage={nextPage} products={products} addToCart={addToCart}  />
     </>
   );
 };

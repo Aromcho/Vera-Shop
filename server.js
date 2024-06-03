@@ -11,6 +11,7 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import socketCb from "./src/router/index.socket.js"
 
+import fileStore from "session-file-store";
 import __dirname from "./utils.js";
 import dbConnect from "./src/utils/dbConnect.util.js";
 
@@ -23,6 +24,8 @@ const ready = async () => {
 const nodeServer = createServer(server);
 nodeServer.listen(port, ready);
 
+const FileSession = fileStore(session)
+
 
 //
 const socketServer = new Server(nodeServer);
@@ -32,6 +35,10 @@ export { socketServer };
 //midelwares
 server.use(cookieParser(process.env.SECRET));
 server.use(session({
+    //store: new FileSession({
+    //    path: "./src/data/fs/files/sessions",
+    //    ttl: 60 * 60 * 1000,
+    //}),
     secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
