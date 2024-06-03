@@ -1,0 +1,128 @@
+[
+  {
+    "id": "9a6fdd9efb8e3f6d9ddab7aa",
+    "email": "usuario4@example.com",
+    "password": "26398322",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "Sofía Martínez"
+  },
+  {
+    "id": "b901d9cf4b5a52416d9db03d",
+    "email": "usuario4@example.com",
+    "password": "26398322",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "Lucas Hernández"
+  },
+  {
+    "id": "fe45e19a1091f32d7448e222",
+    "email": "usuario4@example.com",
+    "password": "26398322",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "Emilia López"
+  },
+  {
+    "id": "f0120dd3851906e6f0f1ed5c",
+    "email": "usuario4@example.com",
+    "password": "26398322",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "Mateo García"
+  },
+  {
+    "id": "04f486ca23478b93b970d101",
+    "email": "usuario4@example.com",
+    "password": "26398322",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "Valentina Pérez"
+  },
+  {
+    "id": "103434f2ae57bb1237542ad0",
+    "email": "porramiro@gmail.com",
+    "password": "1944ramino",
+    "role": "admin",
+    "photo": "",
+    "age": "27",
+    "name": "Ramiro Porrazo"
+  },
+  {
+    "id": "2909c34f50e1f4b6ffcb1401",
+    "email": "arom@gmail.com",
+    "password": "123456789",
+    "role": 0,
+    "photo": "",
+    "age": 12,
+    "name": "usuario sin nombre"
+  },
+  {
+    "id": "547b261099d4e3e1dfe1735a",
+    "email": "alejofrankgmail.com",
+    "password": "981944567",
+    "role": 0,
+    "photo": "",
+    "age": 12,
+    "name": "usuario sin nombre"
+  },
+  {
+    "id": "ced7860a0569089b05e7515d",
+    "email": "zapiolaramon@gmail.com",
+    "password": "12345678",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "ramon zapiola"
+  },
+  {
+    "id": "a17908810930af3aaba5e82b",
+    "email": "aguilarjhonny@gmail.com",
+    "password": "12345678",
+    "role": "admin",
+    "photo": "",
+    "age": 12,
+    "name": "jhonny aguilar"
+  },
+  {
+    "id": "89b82b20a43cc8a583d85f01",
+    "email": "coronelabigail",
+    "password": "12345678",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "Abigail Coronel"
+  },
+  {
+    "id": "65220c4d0942e378a141c91b",
+    "email": "coronelabigail@gmail.com",
+    "password": "12345678",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "Abigail Coronel"
+  },
+  {
+    "id": "ceca844cac3f4dd17a05cefd",
+    "email": "pucheocta@gmail.com",
+    "password": "12345678",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "octabio puchetta"
+  },
+  {
+    "id": "a69867dc9cfc7062dfd112e7",
+    "email": "ruiznicolas@gmail.com",
+    "password": "123567689",
+    "role": "user",
+    "photo": "",
+    "age": 12,
+    "name": "nicolas ruiz"
+  }
+]
