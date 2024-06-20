@@ -1,25 +1,42 @@
 import { Router } from "express";
 import usersManager from "../../data/mongo/managers/UserManager.mongo.js";
+import isValidEmail from "../../middlewares/isValidEmail.mid.js";
+import isValidData from "../../middlewares/isValidData.mid.js";
+import isValidUser from "../../middlewares/isValidUser.mid.js";
+import isValidPassword from "../../middlewares/isValidPassword.mid.js";
+import createHashPassword from "../../middlewares/createHashPassword.mid.js";
 
 const sessionsRouter = Router();
 
-sessionsRouter.post("/login", async (req, res, next) => {
+sessionsRouter.post("/register", isValidData , isValidEmail , createHashPassword, async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    const one = await usersManager.readByEmail(email);
-    if (one.password === password) {
-      req.session.email = email;
-      req.session.online = true;
-      req.session.role = one.role;
-      req.session.user_id = one._id;
-      console.log("Usted esta logeado");
-      return res.status(200).json({ message: "Logged in!" });
-    }
-    return res.status(401).json({ message: "Bad auth!" });
+    const data = req.body;
+    await usersManager.create(data);
+    return res.json({ statusCode:  201 ,message: "Registered!" });
   } catch (error) {
     return next(error);
   }
-});
+})
+
+sessionsRouter.post(
+  "/login",
+  isValidUser,
+  isValidPassword,
+  async (req, res, next) => {
+    try {
+      const { email } = req.body;
+      const one = await usersManager.readByEmail(email);
+      req.session.email = email;
+      req.session.online = true;
+      req.session.role = one.role;
+      req.session.photo = one.photo;
+      req.session.user_id = one._id;
+      return res.json({ statusCode: 200, message: "Logged in!" });
+    } catch (error) {
+      return next(error);
+    }
+  }
+);
 
 sessionsRouter.get("/online", async (req, res, next) => {
   try {

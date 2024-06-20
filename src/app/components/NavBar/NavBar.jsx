@@ -75,6 +75,10 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/user/register">
               Registrarse
             </Nav.Link>
+
+            <Nav.Link as={Link} to="/admin/Orders">
+              Pedidos
+            </Nav.Link>
           </Nav>
           
           {isOnline ? (
