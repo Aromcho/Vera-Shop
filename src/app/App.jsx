@@ -10,6 +10,7 @@ import Register from "./pages/Register/Register.jsx";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import Orders from "./admin/orders/Orders.jsx";
+import Admin from "./pages/Admin/Admin.jsx";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/carrito" element={<Carrito />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/admin/Orders" element={<Orders/>} />
+            <Route path="/admin" element={<Admin/>} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

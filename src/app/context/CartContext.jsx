@@ -7,9 +7,26 @@ const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
+    const checkIfAdmin = async () => {
+      try {
+        const statusResponse = await axios.get('/api/sessions/online');
+        if (statusResponse.data.role === 'admin') {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (error) {
+        console.error("Error al verificar el estado del usuario", error);
+        setIsAdmin(false); // En caso de error, asumir que el usuario no es administrador
+      }
+    };
+  
+    checkIfAdmin();
     fetchCartItems();
     getTotalPrice();
   }, []);
@@ -118,12 +135,16 @@ const CartProvider = ({ children }) => {
       console.error("Error al eliminar los productos del carrito", error);
     }
   };
+  // condicional que si el susario es admin haga una accion
+  
+
 
   return (
     <CartContext.Provider
       value={{
         cartItems,
         total,
+        isAdmin,
         addToCart,
         cantidadTotal,
         borrarTodo,

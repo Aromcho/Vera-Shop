@@ -9,7 +9,7 @@ passport.use(
   "register",
   new LocalStrategy(
     { passReqToCallback: true, usernameField: "email" },
-    async (req, email, password, done) => {
+    async (req, email, password,  done) => {
       try {
         if (!email || !password) {
           const error = new Error("Please enter email and password!");
@@ -36,7 +36,7 @@ passport.use(
   "login",
   new LocalStrategy(
     { passReqToCallback: true, usernameField: "email" },
-    async (req, email, password, done) => {
+    async (req, email, password,  done) => {
       try {
         const one = await usersManager.readByEmail(email);
         if (!one) {
