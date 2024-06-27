@@ -17,17 +17,25 @@ sessionsRouter.post("/register", passport.authenticate("register", { session: fa
   }
 })
 
-sessionsRouter.post(
-  "/login",
-  passport.authenticate("login", { session: false }),
-  async (req, res, next) => {
-    try {
-      return res.json({ statusCode: 200, message: "Logged in!" });
-    } catch (error) {
-      return next(error);
+sessionsRouter.post("/login", passport.authenticate("login", { session: false }), async (req, res, next) => {
+  try {
+    // Asumiendo que el rol del usuario está disponible en req.user.role después de la autenticación exitosa
+    const userRole = req.user.role;
+
+    // Redirige basado en el rol del usuario
+    if (userRole === 'admin') {
+      // Suponiendo que quieres enviar una respuesta JSON con la URL a la que el cliente debe redirigir
+      return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/admin" });
+    } else if (userRole === 'user') {
+      return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/" });
+    } else {
+      // Manejar otros roles o casos inesperados
+      return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/" });
     }
+  } catch (error) {
+    return next(error);
   }
-);
+});
 
 sessionsRouter.get("/online", async (req, res, next) => {
   try {

@@ -47,6 +47,11 @@ server.use(session({
     //cookie: { maxAge: 60 * 60 * 1000},
 })
 );
+server.use(
+    compression({
+    brotli: { enabled: true, zlib: {} },
+    })
+    );
 
 
 
