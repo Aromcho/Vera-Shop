@@ -22,3 +22,19 @@
   .btn-custom:hover {
     background-color: #2575fc;
   }
+  .btn-google {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  
+  .btn-google:hover {
+    background-color: #357ae8;
+  }
+  

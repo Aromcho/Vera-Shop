@@ -10,6 +10,7 @@ import path from "path";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import socketCb from "./src/router/index.socket.js"
+import compression from "compression";
 
 //import fileStore from "session-file-store";
 import MongoStore from "connect-mongo"; 

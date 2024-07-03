@@ -1,14 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { get } from "mongoose";
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
-
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -31,7 +29,6 @@ const CartProvider = ({ children }) => {
     getTotalPrice();
   }, []);
 
-
   const fetchCartItems = async () => {
     try {
       const userResponse = await axios.get("/api/sessions/online");
@@ -44,7 +41,6 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  
   const addToCart = async (product, quantity) => {
     try {
       const userResponse = await axios.get("/api/sessions/online");
@@ -93,7 +89,6 @@ const CartProvider = ({ children }) => {
     return cantidad;
   };
 
-  // Calcula el precio total de los productos en el carrito
   const getTotalPrice = async () => {
     try {
       const userResponse = await axios.get("/api/sessions/online");
@@ -120,7 +115,7 @@ const CartProvider = ({ children }) => {
       console.error("Error al eliminar el producto del carrito", error);
     }
   };
-  // Elimina todos los productos del carrito
+
   const borrarTodo = async () => {
     try {
       const userResponse = await axios.get("/api/sessions/online");
@@ -135,9 +130,16 @@ const CartProvider = ({ children }) => {
       console.error("Error al eliminar los productos del carrito", error);
     }
   };
-  // condicional que si el susario es admin haga una accion
-  
 
+  // Función especial para administradores
+  const adminAction = () => {
+    if (isAdmin) {
+      console.log("Acción especial del administrador");
+      // Aquí puedes poner cualquier lógica o función especial para los administradores
+    } else {
+      console.log("Acceso denegado. Solo los administradores pueden realizar esta acción.");
+    }
+  };
 
   return (
     <CartContext.Provider
@@ -151,6 +153,7 @@ const CartProvider = ({ children }) => {
         getTotalPrice,
         borrarProducto,
         fetchCartItems,
+        adminAction, // Exponer la acción especial del administrador
       }}
     >
       {children}

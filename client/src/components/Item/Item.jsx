@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
 const Item = ({ product, addToCart }) => {
   const quantity = 1;
-  return ( <Card className="h-100 bg-dark text-white">
+  return ( <Card className="h-100 text-black shadow">
     <div className="card-image-wrapper">
       <Button
         onClick={() => {
           addToCart(product, quantity);
         }}
-        className="add-to-cart-button "
+        className="add-to-cart-button btn-dark"
       >
         +
       </Button>
@@ -21,7 +21,7 @@ const Item = ({ product, addToCart }) => {
       />
     </div>
     <Link
-      className="text-decoration-none text-white"
+      className="text-decoration-none text-black"
       to={`/products/${product._id}`}
     >
       <Card.Body>
@@ -30,7 +30,7 @@ const Item = ({ product, addToCart }) => {
         <Card.Text>Precio: ${product.price}</Card.Text>
       </Card.Body>
     </Link>
-    <Link to={`/products/${product._id}`} className="btn btn-primary mt-2">
+    <Link to={`/products/${product._id}`} className="btn btn-dark mt-2  ">
       Ver detalles
     </Link>
   </Card>)

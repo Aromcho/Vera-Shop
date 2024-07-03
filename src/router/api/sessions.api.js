@@ -6,6 +6,7 @@ import isValidUser from "../../middlewares/isValidUser.mid.js";
 import isValidPassword from "../../middlewares/isValidPassword.mid.js";
 import createHashPassword from "../../middlewares/createHashPassword.mid.js";
 import passport from "../../middlewares/passport.mid.js";
+import { token } from "morgan";
 
 const sessionsRouter = Router();
 
@@ -19,18 +20,15 @@ sessionsRouter.post("/register", passport.authenticate("register", { session: fa
 
 sessionsRouter.post("/login", passport.authenticate("login", { session: false }), async (req, res, next) => {
   try {
-    // Asumiendo que el rol del usuario está disponible en req.user.role después de la autenticación exitosa
     const userRole = req.user.role;
 
-    // Redirige basado en el rol del usuario
     if (userRole === 'admin') {
-      // Suponiendo que quieres enviar una respuesta JSON con la URL a la que el cliente debe redirigir
-      return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/admin" });
+      return res.json({ statusCode: 200, message: "Logged in!",token: req.user.token , redirectUrl: "/admin" });
     } else if (userRole === 'user') {
-      return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/" });
+      return res.json({ statusCode: 200, message: "Logged in!",token: req.user.token , redirectUrl: "/" });
     } else {
       // Manejar otros roles o casos inesperados
-      return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/" });
+      return res.json({ statusCode: 200, message: "Logged in!",token: req.user.token , redirectUrl: "/" });
     }
   } catch (error) {
     return next(error);
@@ -62,6 +60,15 @@ sessionsRouter.post("/signout", (req, res, next) => {
   } catch (error) {
     return next(error);
   }
+});
+sessionsRouter.get("/google", passport.authenticate("google", { scope: ["email", "profile"] }));
+sessionsRouter.get("/google/callback", passport.authenticate("google", { session: false}), (req, res, next) => {
+  try {
+    return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/" });
+  } catch (error) {
+    
+  }
+  //res.redirect("/");
 });
 
 export default sessionsRouter;
