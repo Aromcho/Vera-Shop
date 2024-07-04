@@ -48,21 +48,22 @@ passport.use(
           error.statusCode = 401;
           return done(error, false);
         }
-        const isValidPassword = verifyHash(password, user.password);
-        if (!isValidPassword) {
-          const error = new Error("Invalid credentials");
-          error.statusCode = 401;
-          return done(error, false);
+        const verify = verifyHash(password, user.password);
+        if (verify) {
+          const data = {
+            email,
+            role: user.role,
+            photo: user.photo,
+            user_id: user._id,
+            online: true,
+          };
+          const token = createToken(data);
+          user.token = token;
+          return done(null, user);
         }
-        //req.session.email = email;
-        //req.session.online = true;
-        //req.session.role = user.role;
-        //req.session.photo = user.photo;
-        //req.session.user_id = user._id;
-        const data = { email, role: user.role, photo: user.photo, user_id: user._id, online: true };
-        const token = createToken(data);
-        user.token = token;
-        return done(null, user);
+        const error = new Error("Invalid credentials");
+        error.statusCode = 401;
+        return done(error);
       } catch (error) {
         return done(error);
       }

@@ -66,9 +66,8 @@ sessionsRouter.get("/google/callback", passport.authenticate("google", { session
   try {
     return res.json({ statusCode: 200, message: "Logged in!", redirectUrl: "/" });
   } catch (error) {
-    
+    next(error);
   }
-  //res.redirect("/");
 });
 
 export default sessionsRouter;
