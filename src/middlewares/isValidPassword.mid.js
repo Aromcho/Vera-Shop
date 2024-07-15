@@ -1,6 +1,6 @@
 import usersManager from "../data/mongo/managers/UserManager.mongo.js";
 import { verifyHash } from "../utils/hash.util.js";
-
+// middleware para verificar si la contraseña es válida con veryHash
 async function isValidPassword(req, res, next) {
   try {
     const { email, password } = req.body;
