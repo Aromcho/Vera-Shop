@@ -3,10 +3,12 @@ import productManager from '../../data/mongo/managers/ProductManager.mongo.js';
 
 class ProductsRouter extends CustomRouter {
   init() {
+    // Ruta para leer todos los productos o filtrar por categoría
     this.read("/", async (req, res, next) => {
       try {
         const { category } = req.query;
-        const products = await productManager.read(category);
+        const filter = category ? { category } : {};
+        const products = await productManager.read(filter);
         if (products.length > 0) {
           return res.response200(products);
         } else {
@@ -17,20 +19,22 @@ class ProductsRouter extends CustomRouter {
       }
     });
 
+    // Ruta para paginar productos con opción de filtrar por categoría
     this.read("/paginate", async (req, res, next) => {
       try {
         const filter = {};
         const opts = {};
+
         if (req.query.limit) {
-          opts.limit = req.query.limit;
+          opts.limit = parseInt(req.query.limit, 10);
         }
         if (req.query.page) {
-          opts.page = req.query.page;
+          opts.page = parseInt(req.query.page, 10);
         }
-
         if (req.query.category) {
           filter.category = req.query.category;
         }
+
         const all = await productManager.paginate({ filter, opts });
         const info = {
           totalDocs: all.totalDocs,
@@ -40,13 +44,14 @@ class ProductsRouter extends CustomRouter {
           prevPage: all.prevPage,
           nextPage: all.nextPage
         };
-        return res.paginate(all.docs, info)
-        
+
+        return res.paginate(all.docs, info);
       } catch (error) {
         return next(error);
       }
     });
 
+    // Ruta para leer un producto por ID
     this.read("/:pid", async (req, res, next) => {
       try {
         const { pid } = req.params;
@@ -61,6 +66,7 @@ class ProductsRouter extends CustomRouter {
       }
     });
 
+    // Ruta para crear un nuevo producto
     this.create("/", async (req, res, next) => {
       try {
         const data = req.body;
@@ -74,6 +80,7 @@ class ProductsRouter extends CustomRouter {
       }
     });
 
+    // Ruta para actualizar un producto por ID
     this.update("/:pid", async (req, res, next) => {
       try {
         const { pid } = req.params;
@@ -85,6 +92,7 @@ class ProductsRouter extends CustomRouter {
       }
     });
 
+    // Ruta para eliminar un producto por ID
     this.destroy("/:pid", async (req, res, next) => {
       try {
         const { pid } = req.params;
