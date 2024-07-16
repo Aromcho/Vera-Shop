@@ -1,6 +1,5 @@
 import "dotenv/config.js";
 import express from "express";
-import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import indexRouter from "./src/router/index.router.js";
@@ -11,8 +10,8 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import socketCb from "./src/router/index.socket.js";
 import compression from "compression";
-import helmet from "helmet";
 import cors from "cors"; // Importa el middleware CORS
+import winston from "./src/middlewares/winston.mid.js";
 
 //import fileStore from "session-file-store";
 import MongoStore from "connect-mongo";
@@ -34,7 +33,7 @@ socketServer.on("connection", socketCb);
 export { socketServer };
 
 // Middleware
-server.use(morgan("dev"));
+server.use(winston);
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use("/public", express.static("public"));

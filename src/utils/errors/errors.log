@@ -1,0 +1,6 @@
+[33mERROR[39m: undefined - /api/tickets/undefined - 16/7/2024 - input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[33mERROR[39m: undefined - /api/tickets/undefined - 16/7/2024 - input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[33mERROR[39m: Invalid credentials
+[33mERROR[39m: undefined - /api/sessions/login - 16/7/2024 - Invalid credentials
+[31mFATAL[39m: Este es un mensaje de log de nivel FATAL
+[37mERROR[39m: Este es un mensaje de log de nivel ERROR
