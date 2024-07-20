@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Image from 'react-bootstrap/Image';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Cart from '../Carrito/Carrito.jsx';
 import axios from 'axios';
@@ -97,10 +98,10 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg"  variant="dark" className="custom-navbar fixed-top">
+    <Navbar collapseOnSelect expand="lg" variant="dark" className="custom-navbar fixed-top">
       <Container>
         <Navbar.Brand as={Link} to="/" className="navbar-brand">
-          Aroncho's
+          <img src="./img/logo.jpeg" alt="Logo" className="logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

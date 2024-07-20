@@ -1,5 +1,5 @@
 .hero {
-    background-image: url('https://tustablas.com/img/cms/%C3%BAltimas-tendencias-en-sudaderas-de-skate-blog-skate-spain-sep-02.jpg');
+    background-image: url('../../../public/img/fondo-lore.webp');
     background-size: cover;
     background-position: center;
     color: white;
@@ -8,7 +8,7 @@
   }
   .overlay {
     
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.747);
     height: 100%;
   }
   .bg-dark {
@@ -112,6 +112,10 @@ button:hover {
   margin-top: 0;
 }
 
+/*BANNER*/
+.banner {
+  color: #F2D8A7 !important;
+}
 @media (max-width: 768px) {
   .category-row {
     flex-direction: column;

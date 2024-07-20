@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Nav, Container, ButtonGroup, Button, Dropdown } from "react-bootstrap";
+import { Nav, Container, ButtonGroup, Button, Dropdown, Form, FormControl } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import Item from "../Item/Item.jsx";
 import "./ItemList.css";
@@ -30,9 +30,15 @@ const ItemList = ({
 
   return (
     <section className="d-flex flex-column">
-      <div className="hero-list d-flex align-items-center justify-content-center flex-column">
-      <p className="lead text-light">La moda que buscas, en un solo lugar.</p>
-
+      <div className="hero-list">
+        <div className="overlay w-100  d-flex align-items-center justify-content-center flex-column">
+      <h6 className=" mt-5 ">Descubre la Esencia de la Moda Italiana.</h6>
+        <Form inline className="w-50 mt-3">
+          <FormControl type="text" placeholder="Buscar" className="mr-sm-2" />
+          <Button variant="outline-dark">Buscar</Button>
+        </Form>
+      </div>
+      
       </div>
       <Container className="p-1 mb-1">
       <Dropdown className="mb-4">

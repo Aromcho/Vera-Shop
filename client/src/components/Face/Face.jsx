@@ -10,11 +10,11 @@ const Face = () => {
       {/* Sección Hero */}
       <div className="hero d-flex align-items-center justify-content-center flex-column">
         <div className="overlay w-100 d-flex align-items-center justify-content-center flex-column">
-          <h1 className="display-3 text-white">
-            Bienvenido a Mi Tienda de Ropa
+          <h1 className="banner display-3 text-white">
+            Bienvenido a Dolores Pidré
           </h1>
           <p className="lead text-light">
-            La moda que buscas, en un solo lugar.
+          Descubre la Esencia de la Moda Italiana.
           </p>
 
           <Link to="/products/real">
@@ -31,7 +31,7 @@ const Face = () => {
         <Row className="category-row mb-3">
           <Col md={7} className="category-img">
             <img
-              src="https://st2.depositphotos.com/1010550/8116/i/450/depositphotos_81167544-stock-photo-handsome-skater-boy-using-his.jpg"
+              src="https://www.italiano-al-caffe.com/wp-content/uploads/2023/05/outfit-para-viajar-a-italia1.jpeg"
               alt="Hombres"
             />
           </Col>
@@ -57,7 +57,7 @@ const Face = () => {
           </Col>
           <Col md={7} className="category-img">
             <img
-              src="https://deportesriesgo.com/wp-content/uploads/Mejor-ropa-de-skate.jpg"
+              src="https://album.mediaset.es/eimg/10000/2021/05/09/clipping_4kHzfm_4c97.jpg"
               alt="Mujeres"
             />
           </Col>
@@ -65,7 +65,7 @@ const Face = () => {
         <Row className="category-row mb-3 ">
           <Col md={7} className="category-img">
             <img
-              src="https://growoldbcn.com/cdn/shop/articles/skate.jpg?v=1589962181"
+              src="https://e00-telva.uecdn.es/assets/multimedia/imagenes/2022/12/26/16720195986169.jpg"
               alt="Accesorios"
             />
           </Col>

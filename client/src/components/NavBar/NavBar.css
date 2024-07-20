@@ -5,4 +5,10 @@
   }
   
  
+  .custom-navbar .navbar-brand .logo {
+    height: 40px; /* Ajusta la altura según tus necesidades */
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
   

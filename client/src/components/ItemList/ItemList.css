@@ -1,9 +1,10 @@
 .hero-list {
-    background-image: url('https://tustablas.com/img/cms/%C3%BAltimas-tendencias-en-sudaderas-de-skate-blog-skate-spain-sep-02.jpg');
+    background-image: url('../../../public/img/fondo-lore.webp');
     background-size: cover;
     background-position: center;
     color: white;
     height: 40vh;
+    
 }
 .item-list {
     display: grid;
