@@ -1,0 +1,10 @@
+config:
+  target: 'http://localhost:8080'  # Cambia esto a la URL de tu servidor si es necesario
+  phases:
+    - duration: 60
+      arrivalRate: 20  # Número de usuarios por segundo
+
+scenarios:
+  - flow:
+      - get:
+          url: "/"

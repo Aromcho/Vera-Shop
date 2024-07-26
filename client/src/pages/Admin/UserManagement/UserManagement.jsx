@@ -28,7 +28,7 @@ const UserManagement = () => {
   if (error) return <div>Error al cargar los usuarios: {error}</div>;
 
   return (
-    <Table striped bordered hover responsive>
+    <Table striped bordered hover responsive="sm">
       <thead>
         <tr>
           <th>Avatar</th>

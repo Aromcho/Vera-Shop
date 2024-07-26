@@ -38,7 +38,7 @@ function ItemDetailContainer() {
   }
 
   return (
-    <Container className="item-detail-container">
+    <Container className="item-detail-container  pt-5">
       
           <ItemDetail product={product} addToCart={addToCart}/>
         

@@ -40,7 +40,7 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  const addToCart = async (product, quantity) => {
+  const addToCart = async (product, quantity, selectedSize, selectedColor) => {
     try {
       const userResponse = await axios.get('/api/sessions/online');
       if (userResponse.status !== 200) {
@@ -51,6 +51,8 @@ const CartProvider = ({ children }) => {
         product_id: product._id,
         user_id: userId,
         quantity,
+        size: selectedSize,
+        color: selectedColor,
       });
       if (response.status === 200) {
         setCartItems((prevItems) => {
@@ -63,6 +65,8 @@ const CartProvider = ({ children }) => {
               _id: response.data._id,
               product_id: product,
               quantity,
+              size: selectedSize,
+              color: selectedColor,
             },
           ];
         });
@@ -84,6 +88,8 @@ const CartProvider = ({ children }) => {
       });
     }
   };
+  
+
 
   const cantidadTotal = () => {
     return cartItems.reduce((total, producto) => total + producto.cantidad, 0);

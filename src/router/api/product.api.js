@@ -1,5 +1,27 @@
 import CustomRouter from "../CustomRouter.js";
 import productManager from '../../data/mongo/managers/ProductManager.mongo.js';
+import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
+
+// Configuración de Multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dir = 'uploads/';
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    const basename = path.basename(file.originalname, ext);
+    cb(null, `${basename}-${uniqueSuffix}${ext}`);
+  },
+});
+
+const upload = multer({ storage });
 
 class ProductsRouter extends CustomRouter {
   init() {
@@ -63,6 +85,16 @@ class ProductsRouter extends CustomRouter {
         }
       } catch (error) {
         next(error);
+      }
+    });
+
+    // Ruta para subir imágenes
+    this.create("/upload", upload.single('image'), async (req, res, next) => {
+      try {
+        const imageUrl = `/uploads/${req.file.filename}`;
+        res.status(200).json({ url: imageUrl });
+      } catch (error) {
+        res.status(500).json({ error: 'Error al subir la imagen' });
       }
     });
 

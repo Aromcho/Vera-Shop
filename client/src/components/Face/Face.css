@@ -1,5 +1,5 @@
 .hero {
-    background-image: url('../../../public/img/fondo-lore.webp');
+    background-image: url('/img/fondo-lore.webp');
     background-size: cover;
     background-position: center;
     color: white;

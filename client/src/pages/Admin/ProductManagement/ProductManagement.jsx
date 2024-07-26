@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Tooltip, OverlayTrigger, Form, Modal } from 'react-bootstrap';
+import { Button, Tooltip, OverlayTrigger, Form, Modal, Card, Col, Row } from 'react-bootstrap';
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
 import axios from 'axios';
+import './ProductManagement.css';
+import UploadImage from './UploadImage'; // Importa el componente
 
 const ProductManagement = () => {
   const [productos, setProductos] = useState([]);
@@ -11,7 +13,9 @@ const ProductManagement = () => {
     photo: '',
     category: '',
     price: 0,
-    stock: 0
+    stock: 0,
+    size: [], // Añadir campos size y color
+    color: []
   });
 
   useEffect(() => {
@@ -21,7 +25,7 @@ const ProductManagement = () => {
         if (!response.data || response.data.statusCode !== 200) {
           throw new Error('Failed to fetch products');
         }
-        setProductos(response.data.response); // Asegúrate de ajustar según la estructura de tu respuesta
+        setProductos(response.data.response);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -37,21 +41,29 @@ const ProductManagement = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Datos del nuevo producto antes de enviar:', newProduct); // Verifica los datos en la consola
     try {
       const response = await axios.post('/api/product', newProduct);
-      console.log('Product uploaded:', response.data);
-      fetchProducts(); // Actualizar la lista de productos después de la carga exitosa
+      console.log('Producto subido:', response.data);
+      fetchProducts();
       setNewProduct({
         title: '',
         photo: '',
         category: '',
         price: 0,
-        stock: 0
+        stock: 0,
+        size: [], // Añadir campos size y color
+        color: []
       });
-      setShow(false); // Cerrar el modal
+      setShow(false);
     } catch (error) {
-      console.error('Error uploading product:', error);
+      console.error('Error al subir el producto:', error);
     }
+  };
+
+  const setPhotoUrl = (url) => {
+    console.log('URL de la imagen establecida:', url); // Verifica la URL en la consola
+    setNewProduct({ ...newProduct, photo: url });
   };
 
   return (
@@ -60,43 +72,35 @@ const ProductManagement = () => {
         Agregar Producto
       </Button>
       
-      <Table striped bordered hover className="mt-3">
-        <thead>
-          <tr>
-            <th>Imagen</th>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productos.map((product) => (
-            <tr key={product._id}>
-              <td>
-                <img src={product.photo} alt={product.title} style={{ width: '50px' }} />
-              </td>
-              <td>{product._id}</td>
-              <td>{product.title}</td>
-              <td>${product.price}</td>
-              <td>{product.stock}</td>
-              <td>
-                <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
-                  <Button variant="outline-primary" size="sm" className="mx-2">
-                    <PencilSquare />
-                  </Button>
-                </OverlayTrigger>
-                <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
-                  <Button variant="outline-danger" size="sm">
-                    <Trash />
-                  </Button>
-                </OverlayTrigger>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <Row className="pt-3">
+        {productos.map((product) => (
+          <Col xs={12} md={6} lg={12} key={product._id} className="mb-4">
+            <Card className="d-flex flex-row">
+              <Card.Body className='d-flex justify-content-around'>
+              <img src={product.photo} alt={product.title} className='w-25' />
+                <Card.Text>
+                  
+                  <Card.Title>{product.title}</Card.Title>
+                  <strong>Precio:</strong> ${product.price}<br />
+                  <strong>Stock:</strong> {product.stock}
+                </Card.Text>
+                <div className="d-flex justify-content-between flex-column">
+                  <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
+                    <Button variant="outline-primary" size="lg">
+                      <PencilSquare />
+                    </Button>
+                  </OverlayTrigger>
+                  <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
+                    <Button variant="outline-danger" size="lg">
+                      <Trash />
+                    </Button>
+                  </OverlayTrigger>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
 
       <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
@@ -111,7 +115,7 @@ const ProductManagement = () => {
 
             <Form.Group className="mb-3" controlId="photo">
               <Form.Label>URL de la Imagen</Form.Label>
-              <Form.Control type="text" name="photo" value={newProduct.photo} onChange={handleChange} required />
+              <UploadImage setPhotoUrl={setPhotoUrl} /> {/* Usa el componente aquí */}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="category">

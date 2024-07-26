@@ -60,7 +60,7 @@ const Cart = () => {
                   <Col md={4} className="p-3">
                     <Card.Img
                       variant="top"
-                      src="https://files.cdn.printful.com/o/upload/bfl-image/42/11354_l_t-shirt-Design-Examples-mockup_Art-with-text.png"
+                      src={item.product_id.photo || "https://files.cdn.printful.com/o/upload/bfl-image/42/11354_l_t-shirt-Design-Examples-mockup_Art-with-text.png"}
                       style={{ borderRadius: "5px" }}
                     />
                   </Col>
@@ -79,7 +79,22 @@ const Cart = () => {
                           <Card.Text
                             style={{ fontSize: "1rem", color: "#007bff" }}
                           >
-                            Precio: {item.product_id.price}
+                            Precio: ${item.product_id.price.toFixed(2)}
+                          </Card.Text>
+                          <Card.Text
+                            style={{ fontSize: "1rem", color: "#007bff" }}
+                          >
+                            Talle: {item.size} {/* Mostrar el talle */}
+                          </Card.Text>
+                          <Card.Text
+                            style={{ fontSize: "1rem", color: "#007bff" }}
+                          >
+                            Color: {item.color} {/* Mostrar el color */}
+                          </Card.Text>
+                          <Card.Text
+                            style={{ fontSize: "1rem", color: "#007bff" }}
+                          >
+                            Cantidad: {item.quantity} {/* Mostrar la cantidad */}
                           </Card.Text>
                         </>
                       )}
@@ -113,13 +128,13 @@ const Cart = () => {
             ))}
         </Offcanvas.Body>
         <Offcanvas.Header className="d-flex justify-content-between">
-          <Offcanvas.Title>$ {total}</Offcanvas.Title>
+          <Offcanvas.Title>$ {total.toFixed(2)}</Offcanvas.Title>
           <Button variant="danger" onClick={() => borrarTodo()}>
             Vaciar carrito
           </Button>
           <Button as={Link} to="/checkout" variant="success">
             Ir a pagar
-          </Button>{" "}
+          </Button>
         </Offcanvas.Header>
       </Offcanvas>
     </>
