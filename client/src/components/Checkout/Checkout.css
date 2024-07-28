@@ -1,0 +1,30 @@
+.checkout-card {
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .checkout-title {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .checkout-total {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .checkout-confirmation {
+    color: #007bff;
+    margin-top: 10px;
+  }
+  
+  .checkout-stepper {
+    margin-bottom: 30px;
+  }
+  
+  .checkout-buttons {
+    margin-top: 20px;
+  }
+  

@@ -56,7 +56,7 @@ const Admin = () => {
             </Nav>
           </Navbar>
         </Row>
-        <Row xs={12} md={9} className="p-3">
+        <Row xs={12} md={9} className="p-1">
           <main style={{ flexGrow: 1 }}>
             
             {renderComponent()}

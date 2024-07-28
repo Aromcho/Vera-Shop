@@ -1,0 +1,9 @@
+.img-card-admin {
+    width: 100%;
+    height: auto;
+    max-width: 100px; /* Ajusta según el tamaño deseado */
+    max-height: 100px; /* Ajusta según el tamaño deseado */
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  

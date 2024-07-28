@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { GoogleLogin } from 'react-google-login';
 import "./Register.css";
 
 const Register = () => {
@@ -13,6 +12,7 @@ const Register = () => {
   const [photo, setPhoto] = useState('');
   const [age, setAge] = useState('');
   const [name, setName] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const Register = () => {
       const response = await axios.post('/api/sessions/register', user);
       if (response.status === 201) {
         Swal.fire('¡Registrado!', 'Has creado tu cuenta con éxito.', 'success').then(() => {
-          window.location.replace('/');
+          navigate('/user/login');
         });
       }
     } catch (error) {
@@ -42,36 +42,13 @@ const Register = () => {
     }
   };
 
-  const responseGoogle = async (response) => {
-    const { tokenId } = response;
-    try {
-      const res = await axios.post('/api/sessions/google/callback', { tokenId });
-      if (res.status === 200) {
-        Swal.fire('¡Registrado con Google!', 'Has creado tu cuenta con éxito usando Google.', 'success').then(() => {
-          window.location.replace('/');
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      Swal.fire('¡Error!', 'Ha ocurrido un error al intentar registrarse con Google.', 'error');
-    }
-  };
-
   return (
-    <Container className="my-2 text-white">
-      <Row className="justify-content-md-center">
+    <Container className="my-2 text-white mt-4">
+      <Row className="justify-content-md-center  ">
         <Col xs={12} md={6}>
-          <Card className="card-custom">
+          <Card className="card-custom mt-5">
             <Card.Body className="bg-dark-custom">
               <Card.Title className="mb-4 text-white">Registrarse</Card.Title>
-              <GoogleLogin
-                clientId="988198119199-cv4n71shuifrgu9i9s1cf22338497kbf.apps.googleusercontent.com"
-                buttonText="Registrarse con Google"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={'single_host_origin'}
-                className="w-100 btn-google mb-3"
-              />
 
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-2" controlId="formBasicName">
@@ -133,9 +110,10 @@ const Register = () => {
                 </Form.Group>
 
                 <Button
-                  variant="primary"
+                variant="outline-light" size="lg"
+
                   type="submit"
-                  className="w-100 btn-custom"
+                  className="w-100 mt-2"
                 >
                   Registrarse
                 </Button>

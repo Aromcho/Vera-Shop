@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext.jsx';
 import ItemList from '../ItemList/ItemList.jsx';
+import { Spinner } from 'react-bootstrap';
 import './ItemListContainer.css';
 
 const ItemListContainer = () => {
@@ -48,7 +49,14 @@ const ItemListContainer = () => {
   }, [category, page]);
 
   if (loading) {
-    return <p className="text-center">Loading...</p>;
+    return (
+      <div className="loading-container text-center">
+        <Spinner animation="border" role="status" variant="primary">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+        <p className="mt-2">Cargando productos...</p>
+      </div>
+    );
   }
 
   if (error) {

@@ -1,5 +1,5 @@
 .hero-list {
-    background-image: url('../../../public/img/fondo-lore.webp');
+    background-image: url('/img/fondo-lore.webp');
     background-size: cover;
     background-position: center;
     color: white;
@@ -8,7 +8,7 @@
 }
 .item-list {
     display: grid;
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 1fr ;
     gap: 0.5rem;
 }
 

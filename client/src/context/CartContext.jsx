@@ -26,15 +26,18 @@ const CartProvider = ({ children }) => {
 
     checkIfAdmin();
     fetchCartItems();
-    getTotalPrice();
   }, []);
+
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [cartItems]);
 
   const fetchCartItems = async () => {
     try {
       const userResponse = await axios.get('/api/sessions/online');
       const userId = userResponse.data.user_id;
       const cartResponse = await axios.get(`/api/cart?user_id=${userId}`);
-      setCartItems(cartResponse.data.response);
+      setCartItems(cartResponse.data.response || []);
     } catch (error) {
       console.error('Error al obtener los productos del carrito', error);
     }
@@ -48,7 +51,7 @@ const CartProvider = ({ children }) => {
       }
       const userId = userResponse.data.user_id;
       const response = await axios.post('/api/cart/', {
-        product_id: product._id,
+        product_id: product._id,  // Aquí aseguramos que estamos pasando el ObjectId
         user_id: userId,
         quantity,
         size: selectedSize,
@@ -56,9 +59,6 @@ const CartProvider = ({ children }) => {
       });
       if (response.status === 200) {
         setCartItems((prevItems) => {
-          if (!Array.isArray(prevItems)) {
-            prevItems = [];
-          }
           return [
             ...prevItems,
             {
@@ -88,22 +88,11 @@ const CartProvider = ({ children }) => {
       });
     }
   };
-  
 
-
-  const cantidadTotal = () => {
-    return cartItems.reduce((total, producto) => total + producto.cantidad, 0);
-  };
-
-  const getTotalPrice = async () => {
-    try {
-      const userResponse = await axios.get('/api/sessions/online');
-      const userId = userResponse.data.user_id;
-      const response = await axios.get(`/api/tickets/${userId}`);
-      setTotal(response.data.response[0].total);
-    } catch (error) {
-      console.error('Error al obtener el precio total del carrito', error);
-    }
+  const calculateTotalPrice = () => {
+    if (!Array.isArray(cartItems)) return;
+    const total = cartItems.reduce((acc, item) => acc + (item.product_id.price * item.quantity), 0);
+    setTotal(total);
   };
 
   const borrarProducto = async (idProducto) => {
@@ -111,9 +100,6 @@ const CartProvider = ({ children }) => {
       const response = await axios.delete(`/api/cart/${idProducto}`);
       if (response.status === 200) {
         setCartItems((prevItems) => {
-          if (!Array.isArray(prevItems)) {
-            prevItems = [];
-          }
           return prevItems.filter((producto) => producto._id !== idProducto);
         });
       } else {
@@ -146,9 +132,8 @@ const CartProvider = ({ children }) => {
         total,
         isAdmin,
         addToCart,
-        cantidadTotal,
+        calculateTotalPrice,
         borrarTodo,
-        getTotalPrice,
         borrarProducto,
         fetchCartItems,
       }}

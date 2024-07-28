@@ -1,5 +1,54 @@
-.card-shadow { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-.img-rounded { border-radius: 5px; }
-.card-title-bold { font-size: 1.25rem; font-weight: bold; }
-.card-text { font-size: 1rem; }
-.price-text { font-size: 1rem; color: #007bff; }
+.card-shadow { 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .img-rounded { 
+    border-radius: 5px; 
+  }
+  
+  .card-title-bold { 
+    font-size: 1.25rem; 
+    font-weight: lighter;
+  }
+  
+  .card-text { 
+    font-size: 1rem; 
+  }
+  
+  .price-text { 
+    font-size: 1.5rem; 
+    font-weight:lighter;
+    margin-bottom: 10px;
+  }
+  
+  .custom-button {
+    background-color: #F2D8A7 !important;
+    border-color: #F2D8A7 !important;
+    color: black !important;
+  }
+  
+  .custom-button:hover {
+    background-color: #e6c08c !important;
+    border-color: #e6c08c !important;
+    color: black !important;
+  }
+  
+  .custom-size-btn, .custom-color-btn {
+    background-color: white !important;
+    border-color: #F2D8A7 !important;
+    color: black !important;
+    border-radius: 20px;
+  }
+  
+  .custom-size-btn:hover, .custom-color-btn:hover {
+    background-color: #e6c08c !important;
+    border-color: #e6c08c !important;
+    color: black !important;
+  }
+  
+  .custom-size-btn.selected, .custom-color-btn.selected {
+    background-color: #F2D8A7 !important;
+    border-color: #F2D8A7 !important;
+    color: black !important;
+  }
+  

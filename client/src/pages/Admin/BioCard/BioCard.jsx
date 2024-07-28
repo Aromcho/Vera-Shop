@@ -42,7 +42,7 @@ const BioCard = () => {
     <Card className='mt-2 mb-2'>
       <Card.Body>
         <div className="text-center">
-        <Image src="https://yt3.googleusercontent.com/vRF8BHREiJ3Y16AbMxEi_oEuoQlnNNqGpgULuZ6zrWSAi24HcxX3Vko42RN8ToctH-G0qlWd=s900-c-k-c0x00ffffff-no-rj" roundedCircle style={{ width: '100px', height: '100px' }} />          <div className="mt-3">
+        <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5GOMxZRRvTEzYHX3-XuiZ5PqYRXQJ4APh3-vmINzcX8MkxEHbD8nyR7DOx84Rd-Ff0xU&usqp=CAU" roundedCircle style={{ width: '100px', height: '100px' }} />          <div className="mt-3">
             <h5>{usuario.nombre}</h5>
             <p>{usuario.email}</p>
           </div>

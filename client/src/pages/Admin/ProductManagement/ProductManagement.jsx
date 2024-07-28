@@ -1,144 +1,168 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Tooltip, OverlayTrigger, Form, Modal, Card, Col, Row } from 'react-bootstrap';
-import { PencilSquare, Trash } from 'react-bootstrap-icons';
+import { Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import './ProductManagement.css';
-import UploadImage from './UploadImage'; // Importa el componente
+import ProductList from './ProductList';
+import ProductForm from './ProductForm';
 
 const ProductManagement = () => {
   const [productos, setProductos] = useState([]);
   const [show, setShow] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [newProduct, setNewProduct] = useState({
     title: '',
     photo: '',
+    photo2: '',
+    photo3: '',
+    photo4: '',
     category: '',
-    price: 0,
+    price: '',
     stock: 0,
-    size: [], // Añadir campos size y color
+    size: [],
     color: []
   });
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingProductId, setEditingProductId] = useState(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('/api/product');
-        if (!response.data || response.data.statusCode !== 200) {
-          throw new Error('Failed to fetch products');
-        }
-        setProductos(response.data.response);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
     fetchProducts();
   }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('/api/product');
+      if (!response.data || response.data.statusCode !== 200) {
+        throw new Error('Failed to fetch products');
+      }
+      setProductos(response.data.response);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProduct({ ...newProduct, [name]: value });
   };
 
+  const handleSizeClick = (size) => {
+    setNewProduct((prevState) => ({
+      ...prevState,
+      size: prevState.size.includes(size) ? prevState.size.filter((s) => s !== size) : [...prevState.size, size]
+    }));
+  };
+
+  const handleColorClick = (color) => {
+    setNewProduct((prevState) => ({
+      ...prevState,
+      color: prevState.color.includes(color) ? prevState.color.filter((c) => c !== color) : [...prevState.color, color]
+    }));
+  };
+
+  const formatPrice = (price) => {
+    return price.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
+
+  const handlePriceChange = (e) => {
+    const { value } = e.target;
+    const onlyNumbers = value.replace(/\D/g, ""); // Eliminar caracteres no numéricos
+    const formattedPrice = formatPrice(onlyNumbers);
+    setNewProduct({ ...newProduct, price: formattedPrice });
+    e.target.value = formattedPrice;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Datos del nuevo producto antes de enviar:', newProduct); // Verifica los datos en la consola
+    const productData = {
+      ...newProduct,
+      price: newProduct.price.replace(/\./g, '') // Eliminar los puntos antes de enviar
+    };
+    console.log('Datos del nuevo producto antes de enviar:', productData); // Verifica los datos en la consola
     try {
-      const response = await axios.post('/api/product', newProduct);
-      console.log('Producto subido:', response.data);
+      if (isEditing) {
+        const response = await axios.put(`/api/product/${editingProductId}`, productData);
+        console.log('Producto editado:', response.data);
+      } else {
+        const response = await axios.post('/api/product', productData);
+        console.log('Producto subido:', response.data);
+      }
       fetchProducts();
       setNewProduct({
         title: '',
         photo: '',
+        photo2: '',
+        photo3: '',
+        photo4: '',
         category: '',
-        price: 0,
+        price: '',
         stock: 0,
-        size: [], // Añadir campos size y color
+        size: [],
         color: []
       });
       setShow(false);
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000); // Mostrar alerta por 3 segundos
     } catch (error) {
       console.error('Error al subir el producto:', error);
     }
   };
 
-  const setPhotoUrl = (url) => {
-    console.log('URL de la imagen establecida:', url); // Verifica la URL en la consola
-    setNewProduct({ ...newProduct, photo: url });
+  const setPhotoUrl = (photoField, url) => {
+    console.log(`URL de la imagen establecida (${photoField}):`, url);
+    setNewProduct({ ...newProduct, [photoField]: url });
+  };
+
+  const handleEdit = (product) => {
+    setNewProduct({
+      title: product.title,
+      photo: product.photo,
+      photo2: product.photo2,
+      photo3: product.photo3,
+      photo4: product.photo4,
+      category: product.category,
+      price: formatPrice(String(product.price)),
+      stock: product.stock,
+      size: product.size,
+      color: product.color
+    });
+    setIsEditing(true);
+    setEditingProductId(product._id);
+    setShow(true);
+  };
+
+  const handleDelete = async (productId) => {
+    try {
+      await axios.delete(`/api/product/${productId}`);
+      fetchProducts();
+    } catch (error) {
+      console.error('Error al eliminar el producto:', error);
+    }
   };
 
   return (
     <>
-      <Button variant="success" onClick={() => setShow(true)}>
+      <Button className='text-dark' variant="success" onClick={() => { setShow(true); setIsEditing(false); }} style={{ backgroundColor: "#F2D8A7", borderColor: "#F2D8A7" }}>
         Agregar Producto
       </Button>
-      
-      <Row className="pt-3">
-        {productos.map((product) => (
-          <Col xs={12} md={6} lg={12} key={product._id} className="mb-4">
-            <Card className="d-flex flex-row">
-              <Card.Body className='d-flex justify-content-around'>
-              <img src={product.photo} alt={product.title} className='w-25' />
-                <Card.Text>
-                  
-                  <Card.Title>{product.title}</Card.Title>
-                  <strong>Precio:</strong> ${product.price}<br />
-                  <strong>Stock:</strong> {product.stock}
-                </Card.Text>
-                <div className="d-flex justify-content-between flex-column">
-                  <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
-                    <Button variant="outline-primary" size="lg">
-                      <PencilSquare />
-                    </Button>
-                  </OverlayTrigger>
-                  <OverlayTrigger overlay={<Tooltip>Eliminar</Tooltip>}>
-                    <Button variant="outline-danger" size="lg">
-                      <Trash />
-                    </Button>
-                  </OverlayTrigger>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
 
-      <Modal show={show} onHide={() => setShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Agregar Nuevo Producto</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="title">
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control type="text" name="title" value={newProduct.title} onChange={handleChange} required />
-            </Form.Group>
+      <Alert show={showAlert} variant="success">
+        Producto {isEditing ? 'editado' : 'subido'} exitosamente.
+      </Alert>
 
-            <Form.Group className="mb-3" controlId="photo">
-              <Form.Label>URL de la Imagen</Form.Label>
-              <UploadImage setPhotoUrl={setPhotoUrl} /> {/* Usa el componente aquí */}
-            </Form.Group>
+      <ProductList productos={productos} handleEdit={handleEdit} handleDelete={handleDelete} />
 
-            <Form.Group className="mb-3" controlId="category">
-              <Form.Label>Categoría</Form.Label>
-              <Form.Control type="text" name="category" value={newProduct.category} onChange={handleChange} required />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="price">
-              <Form.Label>Precio</Form.Label>
-              <Form.Control type="number" name="price" value={newProduct.price} onChange={handleChange} required />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="stock">
-              <Form.Label>Stock</Form.Label>
-              <Form.Control type="number" name="stock" value={newProduct.stock} onChange={handleChange} required />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              Subir Producto
-            </Button>
-          </Form>
-        </Modal.Body>
-      </Modal>
+      <ProductForm
+        show={show}
+        handleClose={() => setShow(false)}
+        handleSubmit={handleSubmit}
+        isEditing={isEditing}
+        newProduct={newProduct}
+        handleChange={handleChange}
+        handlePriceChange={handlePriceChange}
+        handleSizeClick={handleSizeClick}
+        handleColorClick={handleColorClick}
+        setPhotoUrl={setPhotoUrl}
+      />
     </>
   );
 };

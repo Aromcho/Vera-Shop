@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
+import { Form } from 'react-bootstrap';
 import axios from 'axios';
-import { Button, Form } from 'react-bootstrap';
 
-const UploadImage = ({ setPhotoUrl }) => {
+const UploadImage = ({ setPhotoUrl, photoField }) => {
   const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState(null);
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
-  const handleUpload = async () => {
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    setFile(file);
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append(photoField, file);
 
     try {
       const response = await axios.post('/api/product/upload', formData, {
@@ -19,18 +18,27 @@ const UploadImage = ({ setPhotoUrl }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      const imageUrl = response.data.url;
-      console.log('URL de la imagen subida:', imageUrl); // Verifica la URL en la consola
-      setPhotoUrl(imageUrl); // Asegúrate de que esta línea se está ejecutando
+      const imageUrl = response.data[photoField];
+      console.log(`URL de la imagen subida (${photoField}):`, imageUrl);
+      setPhotoUrl(photoField, imageUrl);
+      setPreview(URL.createObjectURL(file));
     } catch (error) {
-      console.error('Error al subir la imagen:', error);
+      console.error(`Error al subir la imagen (${photoField}):`, error);
     }
   };
 
   return (
     <div>
-      <Form.Control type="file" onChange={handleFileChange} />
-      <Button onClick={handleUpload}>Subir Imagen</Button>
+      <Form.Label htmlFor={`imageUpload-${photoField}`} className="image-upload-label">
+        <div className="image-upload-placeholder">
+          {preview ? (
+            <img src={preview} alt="Preview" className="img-preview" />
+          ) : (
+            <i className="bi bi-upload"></i>
+          )}
+        </div>
+      </Form.Label>
+      <Form.Control type="file" id={`imageUpload-${photoField}`} onChange={handleFileChange} style={{ display: 'none' }} />
     </div>
   );
 };

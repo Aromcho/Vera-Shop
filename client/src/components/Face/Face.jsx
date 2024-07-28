@@ -1,8 +1,9 @@
 import React from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Face.css';
 import ItemListContainer from '../ItemListContainer/ItemListContainer.jsx';
+import LocationSection from '../LocationSection/LocationSection.jsx';
 
 const Face = () => {
   return (
@@ -10,11 +11,11 @@ const Face = () => {
       {/* Sección Hero */}
       <div className="hero d-flex align-items-center justify-content-center flex-column">
         <div className="overlay w-100 d-flex align-items-center justify-content-center flex-column">
-          <h1 className="banner display-3 text-white">
-            Bienvenido a Dolores Pidré
+          <h1 className="banner display-3 text-white p-2">
+            Dolores Pidré
           </h1>
-          <p className="lead text-light">
-          Descubre la Esencia de la Moda Italiana.
+          <p className="lead text-light ">
+            Descubre la Esencia de la Moda Italiana.
           </p>
 
           <Link to="/products/real">
@@ -22,12 +23,24 @@ const Face = () => {
               Explora Nuestros Productos
             </Button>
           </Link>
+
+          <div className="social-icons mt-3">
+            <a href="https://www.instagram.com/dolorespidre/?hl=es" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline-light" size="lg" className="mx-2">
+                <i className="bi bi-instagram"></i>
+              </Button>
+            </a>
+            <a href="https://www.facebook.com/dolorespidre/" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline-light" size="lg" className="mx-2">
+                <i className="bi bi-facebook"></i>
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Sección de Categorías Destacadas */}
-      <Container className="my-5">
-        <h2 className="text-center mb-4">Categorías Destacadas</h2>
+      <Container className="my-5 d-flex align-items-center justify-content-center flex-column">
         <Row className="category-row mb-3">
           <Col md={7} className="category-img">
             <img
@@ -36,9 +49,9 @@ const Face = () => {
             />
           </Col>
           <Col md={5} className="category-text p-4 rounded">
-            <h3>Hombres</h3>
-            <p>Explora las últimas tendencias para hombres.</p>
-            <Link to="/category/men">
+            <h3>Invierno</h3>
+            <p>Explora las últimas tendencias invierno.</p>
+            <Link to="/products/real">
               <Button variant="outline-light" size="lg">
                 Ver Más
               </Button>
@@ -47,9 +60,9 @@ const Face = () => {
         </Row>
         <Row className="category-reverse category-row mb-3">
           <Col md={5} className="category-text-2 p-4 rounded">
-            <h3>Mujeres</h3>
+            <h3>Elegante</h3>
             <p>Descubre la moda femenina para toda ocasión.</p>
-            <Link to="/category/women">
+            <Link to="/products/real">
               <Button variant="outline-light" size="lg">
                 Ver Más
               </Button>
@@ -72,7 +85,7 @@ const Face = () => {
           <Col md={5} className="category-text p-4 rounded">
             <h3>Accesorios</h3>
             <p>Complementa tu estilo con los mejores accesorios.</p>
-            <Link to="/category/accessories">
+            <Link to="/products/real">
               <Button variant="outline-light" size="lg">
                 Ver Más
               </Button>
@@ -83,23 +96,13 @@ const Face = () => {
 
       {/* Mejoras en la Sección de Productos Populares */}
       <Container className="my-5 popular-products-section">
-        <h2 className="text-center mb-4 section-title">Productos Populares</h2>
+        <h2 className="text-center mb-4 section-title">Productos</h2>
         <ItemListContainer />
       </Container>
-
-      {/* Mejoras en la Sección de Suscripción */}
-      <div className="subscription-section text-center p-5">
-        <div className="subscription-content">
-          <h2 className="subscription-title">Únete a Nuestro Boletín</h2>
-          <p>Recibe las últimas noticias y ofertas exclusivas.</p>
-          <form className="subscription-form">
-            <input type="email" placeholder="Tu correo electrónico" />
-            <Button variant="primary" size="lg">
-              Suscribirse
-            </Button>
-          </form>
-        </div>
-      </div>
+      <Container className="my-5">
+        <LocationSection />
+      </Container>
+      
       <div className="testimonials-section text-center my-5">
         <Container>
           <h2 className="mb-4">Lo Que Dicen Nuestros Clientes</h2>
@@ -135,7 +138,12 @@ const Face = () => {
         </Container>
       </div>
 
-      
+      {/* Flotador de WhatsApp */}
+      <div className="floating-icons ">
+        <a href="https://wa.me/5491149791377" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
+          <i className="bi bi-whatsapp"></i>
+        </a>
+      </div>
     </div>
   );
 };

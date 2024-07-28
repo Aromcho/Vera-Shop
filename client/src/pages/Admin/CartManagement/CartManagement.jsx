@@ -42,29 +42,27 @@ const CartManagement = () => {
     // Aquí podrías abrir un modal o navegar a otra página con los detalles del carrito
   };
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
-    <Table striped bordered hover responsive="sm">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Usuario</th>
-          <th>Productos</th>
-          <th>Total</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        {carts.length > 0 ? (
-          carts.map((cart) => (
+    <>
+      {error && <div className="text-danger">{error}</div>}
+      {carts.length === 0 && !error && <div>No carts found</div>}
+      <Table striped bordered hover responsive="sm">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Productos</th>
+            <th>Total</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {carts.map((cart) => (
             <tr key={cart._id}>
               <td>{cart._id}</td>
-              <td>{cart.user_id.email}</td>
-              <td>{cart.product_id.title}</td>
-              <td>{`$${cart.product_id.price}`}</td>
+              <td>{cart.user_id ? cart.user_id.email : 'Usuario no encontrado'}</td>
+              <td>{cart.product_id ? cart.product_id.title : 'Producto no encontrado'}</td>
+              <td>{cart.product_id ? `$${cart.product_id.price}` : 'Precio no disponible'}</td>
               <td>
                 <Button variant="info" onClick={() => handleViewDetails(cart._id)} className="me-2">
                   Ver Detalles
@@ -74,14 +72,10 @@ const CartManagement = () => {
                 </Button>
               </td>
             </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="5">No carts found</td>
-          </tr>
-        )}
-      </tbody>
-    </Table>
+          ))}
+        </tbody>
+      </Table>
+    </>
   );
 };
 

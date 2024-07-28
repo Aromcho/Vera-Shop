@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar.jsx";
-import Carrito from "./components/Carrito/Carrito.jsx";
+import Cart from './components/Carrito/Carrito.jsx';
 import Face from "./components/Face/Face.jsx";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer.jsx";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer.jsx";
@@ -25,7 +25,7 @@ function App() {
             <Route path="/products/real" element={<ItemListContainer />} />
             <Route path="/products/real/:category" element={<ItemListContainer />}/>
             <Route path="/products/:productId"element={<ItemDetailContainer />}/>
-            <Route path="/carrito" element={<Carrito />} />
+            <Route path="/cart" element={<Cart />} /> 
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>

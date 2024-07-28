@@ -54,6 +54,7 @@ if (cluster.isMaster) {
     server.use(express.urlencoded({ extended: true }));
     server.use("/public", express.static("public"));
     server.use(express.static(__dirname + "/public"));
+    server.use("/uploads", express.static(path.join(__dirname, "uploads"))); // Servir la carpeta uploads como estática
     server.use(cookieParser(process.env.SECRET));
     server.use(
         session({

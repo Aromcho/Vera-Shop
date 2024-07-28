@@ -3,11 +3,12 @@ import productManager from '../../data/mongo/managers/ProductManager.mongo.js';
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
+import __dirname from '../../../utils.js';  // Aseguramos la ruta correcta a utils.js
 
 // Configuración de Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = 'uploads/';
+    const dir = path.join(__dirname, 'uploads');
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -89,10 +90,21 @@ class ProductsRouter extends CustomRouter {
     });
 
     // Ruta para subir imágenes
-    this.create("/upload", upload.single('image'), async (req, res, next) => {
+    this.create("/upload", upload.fields([
+      { name: 'photo', maxCount: 1 },
+      { name: 'photo2', maxCount: 1 },
+      { name: 'photo3', maxCount: 1 },
+      { name: 'photo4', maxCount: 1 }
+    ]), async (req, res, next) => {
       try {
-        const imageUrl = `/uploads/${req.file.filename}`;
-        res.status(200).json({ url: imageUrl });
+        const baseUrl = req.protocol + '://' + req.get('host');
+        const photos = {
+          photo: req.files.photo ? `${baseUrl}/uploads/${req.files.photo[0].filename}` : "",
+          photo2: req.files.photo2 ? `${baseUrl}/uploads/${req.files.photo2[0].filename}` : "",
+          photo3: req.files.photo3 ? `${baseUrl}/uploads/${req.files.photo3[0].filename}` : "",
+          photo4: req.files.photo4 ? `${baseUrl}/uploads/${req.files.photo4[0].filename}` : ""
+        };
+        res.status(200).json(photos);
       } catch (error) {
         res.status(500).json({ error: 'Error al subir la imagen' });
       }

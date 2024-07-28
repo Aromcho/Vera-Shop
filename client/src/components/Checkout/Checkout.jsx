@@ -1,12 +1,15 @@
 import React, { useState, useContext } from 'react';
-import { Container, Grid, Card, CardContent, Typography, List, ListItem, ListItemText, Badge, TextField, Button, Stepper, Step, StepLabel, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Container, Grid, Card, CardContent, Typography, List, ListItem, ListItemText, TextField, Button, Stepper, Step, StepLabel, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { CartContext } from '../../context/CartContext.jsx';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import './Checkout.css';
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [address, setAddress] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
-  const { cartItems, getTotalPrice, total } = useContext(CartContext);
+  const { cartItems, total, fetchCartItems } = useContext(CartContext);
   const steps = ['Resumen de la compra', 'Detalles de envío', 'Confirmación'];
 
   const handleNext = () => {
@@ -17,10 +20,30 @@ const Checkout = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (activeStep === steps.length - 1) {
-      handleSubmit(); // Aquí se debería manejar la lógica de envío del formulario
+      try {
+        const userResponse = await axios.get('/api/sessions/online');
+        const userId = userResponse.data.user_id;
+
+        const orderData = {
+          user_id: userId,
+          quantity: cartItems.reduce((acc, item) => acc + item.quantity, 0),
+          ticket: total,
+          state: 'reserver',
+        };
+
+        const response = await axios.post('/api/orders', orderData);
+        if (response.status === 201) {
+          Swal.fire('¡Compra exitosa!', 'Tu orden ha sido creada con éxito.', 'success').then(() => {
+            fetchCartItems(); // Actualiza el carrito
+            window.location.replace('/');
+          });
+        }
+      } catch (error) {
+        Swal.fire('¡Error!', 'Hubo un problema al crear la orden. Por favor, intenta de nuevo.', 'error');
+      }
     } else {
       handleNext();
     }
@@ -30,26 +53,26 @@ const Checkout = () => {
     switch (step) {
       case 0:
         return (
-          <Card>
+          <Card className="checkout-card  mt-5">
             <CardContent>
-              <Typography variant="h5" component="h2">Resumen de la compra</Typography>
+              <Typography variant="h5" component="h2" className="checkout-title  mt-5">Resumen de la compra</Typography>
               <List>
                 {cartItems.map((product) => (
-                  <ListItem key={product.id}>
+                  <ListItem key={product._id}>
                     <ListItemText primary={product.product_id.title} secondary={`Precio: $${product.product_id.price}`} />
                   </ListItem>
                 ))}
               </List>
-              <Typography variant="body1">Total: ${total}</Typography>
-              <Typography variant="body1">Cantidad de productos: {cartItems.length}</Typography>
+              <Typography variant="body1" className="checkout-total">Total: ${total}</Typography>
+              <Typography variant="body1" className="checkout-total">Cantidad de productos: {cartItems.length}</Typography>
             </CardContent>
           </Card>
         );
       case 1:
         return (
-          <Card>
+          <Card className="checkout-card  mt-5">
             <CardContent>
-              <Typography variant="h5" component="h2">Detalles de la compra</Typography>
+              <Typography variant="h5" component="h2" className="checkout-title  mt-5">Detalles de la compra</Typography>
               <form onSubmit={handleFormSubmit}>
                 <TextField
                   label="Dirección de envío"
@@ -79,10 +102,10 @@ const Checkout = () => {
         );
       case 2:
         return (
-          <Card>
+          <Card className="checkout-card  mt-5">
             <CardContent>
-              <Typography variant="h5" component="h2">Confirmación</Typography>
-              {/* Aquí se pueden agregar más detalles de confirmación según sea necesario */}
+              <Typography variant="h5" component="h2" className="checkout-title  mt-5">Confirmación</Typography>
+              <Typography variant="body1" className="checkout-confirmation">Tu orden está casi lista para ser procesada.</Typography>
             </CardContent>
           </Card>
         );
@@ -93,7 +116,7 @@ const Checkout = () => {
 
   return (
     <Container maxWidth="md" className="mt-5">
-      <Stepper activeStep={activeStep} alternativeLabel>
+      <Stepper activeStep={activeStep} alternativeLabel className="checkout-stepper mt-5">
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
@@ -102,7 +125,7 @@ const Checkout = () => {
       </Stepper>
       <div>
         {getStepContent(activeStep)}
-        <Grid container spacing={2} justifyContent="flex-end">
+        <Grid container spacing={2} justifyContent="flex-end" className="checkout-buttons">
           <Grid item>
             <Button disabled={activeStep === 0} onClick={handleBack}>Atrás</Button>
           </Grid>

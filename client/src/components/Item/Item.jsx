@@ -1,31 +1,29 @@
 import React, { useState } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import './Item.css';
 
 const Item = ({ product, addToCart }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const quantity = 1;
 
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
+
+  const handleColorClick = (color) => {
+    setSelectedColor(color);
+  };
+
   return (
-    <Card className="h-100 text-black shadow">
+    <Card className="h-100 text-black shadow card-shadow">
       <div className="card-image-wrapper">
-        <Button
-          size="md"
-          onClick={() => {
-            if (selectedSize && selectedColor) {
-              addToCart({ ...product, selectedSize, selectedColor }, quantity);
-            } else {
-              alert("Please select size and color");
-            }
-          }}
-          className="add-to-cart-button btn-dark"
-        >
-          <i className="bi bi-cart-plus"></i>
-        </Button>
+        
         <Card.Img
           src={product.photo}
           alt={product.title}
+          className="img-rounded"
         />
       </div>
       <Link
@@ -33,35 +31,14 @@ const Item = ({ product, addToCart }) => {
         to={`/products/${product._id}`}
       >
         <Card.Body>
-          <Card.Title>{product.title}</Card.Title>
-          <Card.Text> {product.category}</Card.Text>
-          <Card.Text>Precio: ${product.price}</Card.Text>
-          <Form.Group controlId="sizeSelector">
-            <Form.Control
-              as="select"
-              size="sm"
-              value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value)}
-            >
-              <option value="">Talles</option>
-              {product.size.map((size, index) => (
-                <option key={index} value={size}>{size}</option>
-              ))}
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="colorSelector">
-            <Form.Control
-              as="select"
-              size="sm"
-              value={selectedColor}
-              onChange={(e) => setSelectedColor(e.target.value)}
-            >
-              <option value="">Colores</option>
-              {product.color.map((color, index) => (
-                <option key={index} value={color}>{color}</option>
-              ))}
-            </Form.Control>
-          </Form.Group>
+            <Card.Title className="card-title-bold">{product.title}</Card.Title>
+            <Card.Text className="price-text">$ {product.price}</Card.Text>
+          <Card.Text className="card-text mb-2">{product.category}</Card.Text>
+          <Button
+          size="md"
+          className="custom-button w-100">
+          <p className="mb-0">Ver Detalles</p>
+        </Button>
         </Card.Body>
       </Link>
     </Card>

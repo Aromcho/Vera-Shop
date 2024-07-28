@@ -289,3 +289,116 @@
 [37mERROR[39m: ENOENT: no such file or directory, open 'C:\Users\Aroncho\OneDrive\Escritorio\Lore\CODESERVER\uploads\1721951763867-home_app_preview.png'
 [37mERROR[39m: ENOENT: no such file or directory, open 'C:\Users\Aroncho\OneDrive\Escritorio\Lore\CODESERVER\uploads\1721951803879-WhatsApp Image 2024-06-28 at 20.47.12.jpeg'
 [37mERROR[39m: ENOENT: no such file or directory, open 'C:\Users\Aroncho\OneDrive\Escritorio\Lore\CODESERVER\uploads\1721951813020-home_app_preview.png'
+[37mERROR[39m: products validation failed: price: Cast to Number failed for value "1.000.000" (type string) at path "price"
+[37mERROR[39m: products validation failed: price: Cast to Number failed for value "1.000.000" (type string) at path "price"
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Unexpected field
+[37mERROR[39m: Unexpected field
+[37mERROR[39m: Unexpected field
+[37mERROR[39m: Unexpected field
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Unexpected field
+[37mERROR[39m: Unexpected field
+[37mERROR[39m: Unexpected field
+[37mERROR[39m: Unexpected field
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[37mERROR[39m: orders validation failed: products.0.product_id: Cast to ObjectId failed for value "{ title: 'aroncho', price: 1600 }" (type Object) at path "product_id" because of "BSONError", ticket: Path `ticket` is required.
+[37mERROR[39m: orders validation failed: products.0.product_id: Path `product_id` is required.
+[37mERROR[39m: orders validation failed: products.0.product_id: Path `product_id` is required., products.1.product_id: Path `product_id` is required.
+[37mERROR[39m: orders validation failed: products.0.product_id: Path `product_id` is required., products.1.product_id: Path `product_id` is required.
+[37mERROR[39m: orders validation failed: products.0.product_id: Path `product_id` is required., products.1.product_id: Path `product_id` is required.
+[37mERROR[39m: orders validation failed: products.0.product_id: Path `product_id` is required.
+[37mERROR[39m: orders validation failed: products.0.product_id: Path `product_id` is required.
+[37mERROR[39m: orders validation failed: products.0.product_id: Path `product_id` is required.
+[37mERROR[39m: orders validation failed: products.0.product_id: Path `product_id` is required.
+[37mERROR[39m: orders validation failed: products.0.product_id: Cast to ObjectId failed for value "{ title: 'aroncho', price: 1600 }" (type Object) at path "product_id" because of "BSONError"
+[37mERROR[39m: orders validation failed: products.0.product_id: Cast to ObjectId failed for value "{ title: 'aroncho', price: 1600 }" (type Object) at path "product_id" because of "BSONError"

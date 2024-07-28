@@ -29,7 +29,7 @@ const ItemList = ({
   };
 
   return (
-    <section className="d-flex flex-column">
+    <section className="d-flex flex-column mb-2">
       <div className="hero-list">
         <div className="overlay w-100  d-flex align-items-center justify-content-center flex-column">
       <h6 className=" mt-5 ">Descubre la Esencia de la Moda Italiana.</h6>
@@ -60,14 +60,14 @@ const ItemList = ({
         </div>
       </Container>
       <div className="d-flex justify-content-around mt-4">
-        <button onClick={() => setPage(prevPage)} disabled={!prevPage}>Anterior</button>
+        <Button onClick={() => setPage(prevPage)} disabled={!prevPage}>Anterior</Button>
         <ButtonGroup aria-label="First group">
           <Button variant="secondary">{page}</Button>{' '}
           <Button variant="secondary">{page + 1}</Button>{' '}
           <Button variant="secondary">{page + 2}</Button>{' '}
           <Button variant="secondary">{page + 3}</Button>
         </ButtonGroup>
-        <button onClick={() => setPage(nextPage)} disabled={!nextPage}>Siguiente</button>
+        <Button onClick={() => setPage(nextPage)} disabled={!nextPage}>Siguiente</Button>
       </div>
     </section>
   );
