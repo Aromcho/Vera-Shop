@@ -1,13 +1,59 @@
 import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [cartItems, setCartItems] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const handleUserAuth = async () => {
+      if (!isAuthenticated || !user) return; // Verificar si el usuario está autenticado y el objeto user está disponible
+
+      const userAuth0Register = {
+        email: user.email,
+        password: user.sub, // Usamos el 'sub' como identificador único
+        photo: user.picture,
+        name: user.name,
+      };
+
+      try {
+        // Intentar registrar al usuario
+        const registerResponse = await axios.post('/api/sessions/register', userAuth0Register);
+
+        if (registerResponse.data.statusCode === 201) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Registrado',
+            text: 'Usuario registrado exitosamente. Redirigiendo...',
+          });
+        } else {
+          await axios.post('/api/sessions/login', userAuth0Register);
+        }
+      } catch (error) {
+        console.error('Error al intentar iniciar sesión:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Ha ocurrido un error al intentar iniciar sesión.',
+        });
+      }
+    };
+
+    
+
+    if (isAuthenticated) {
+      handleUserAuth();
+      fetchCartItems();
+    } else {
+      setCartItems([]); // Limpiar el carrito si no está autenticado
+    }
+  }, [isAuthenticated, user]);
 
   useEffect(() => {
     const checkIfAdmin = async () => {
@@ -32,66 +78,10 @@ const CartProvider = ({ children }) => {
     calculateTotalPrice();
   }, [cartItems]);
 
-  const fetchCartItems = async () => {
-    try {
-      const userResponse = await axios.get('/api/sessions/online');
-      const userId = userResponse.data.user_id;
-      const cartResponse = await axios.get(`/api/cart?user_id=${userId}`);
-      setCartItems(cartResponse.data.response || []);
-    } catch (error) {
-      console.error('Error al obtener los productos del carrito', error);
-    }
-  };
-
-  const addToCart = async (product, quantity, selectedSize, selectedColor) => {
-    try {
-      const userResponse = await axios.get('/api/sessions/online');
-      if (userResponse.status !== 200) {
-        throw new Error('No se pudo verificar el estado del usuario.');
-      }
-      const userId = userResponse.data.user_id;
-      const response = await axios.post('/api/cart/', {
-        product_id: product._id,  // Aquí aseguramos que estamos pasando el ObjectId
-        user_id: userId,
-        quantity,
-        size: selectedSize,
-        color: selectedColor,
-      });
-      if (response.status === 200) {
-        setCartItems((prevItems) => {
-          return [
-            ...prevItems,
-            {
-              _id: response.data._id,
-              product_id: product,
-              quantity,
-              size: selectedSize,
-              color: selectedColor,
-            },
-          ];
-        });
-        Swal.fire({
-          icon: 'success',
-          title: '¡Producto añadido al carrito!',
-          text: `${product.title} se ha añadido a tu carrito.`,
-          confirmButtonText: 'OK',
-        });
-      } else {
-        throw new Error('No se pudo añadir el producto al carrito.');
-      }
-    } catch (error) {
-      console.error('Error al agregar el producto al carrito', error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Error al añadir al carrito',
-        text: 'No se pudo añadir el producto al carrito. Por favor, inténtalo de nuevo.',
-      });
-    }
-  };
-
+  
   const calculateTotalPrice = () => {
     if (!Array.isArray(cartItems)) return;
-    const total = cartItems.reduce((acc, item) => acc + (item.product_id.price * item.quantity), 0);
+    const total = cartItems.reduce((acc, item) => acc + item.product_id.price * item.quantity, 0);
     setTotal(total);
   };
 
@@ -99,9 +89,7 @@ const CartProvider = ({ children }) => {
     try {
       const response = await axios.delete(`/api/cart/${idProducto}`);
       if (response.status === 200) {
-        setCartItems((prevItems) => {
-          return prevItems.filter((producto) => producto._id !== idProducto);
-        });
+        setCartItems((prevItems) => prevItems.filter((producto) => producto._id !== idProducto));
       } else {
         console.error('Error al eliminar el producto del carrito');
       }
@@ -124,6 +112,108 @@ const CartProvider = ({ children }) => {
       console.error('Error al eliminar los productos del carrito', error);
     }
   };
+  const logoutjwt = async () => {
+    try {
+      const response = await axios.post('/api/sessions/signout');
+      logout(); // Cerrar sesión con Auth0
+      if (response.status === 200) {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Sesión cerrada!',
+          text: 'Has cerrado la sesión correctamente.',
+          confirmButtonText: 'OK',
+        });
+        setCartItems([]); // Limpiar el carrito al cerrar sesión
+      } else {
+        console.error('Error al cerrar la sesión');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al cerrar la sesión.',
+          confirmButtonText: 'OK',
+        });
+      }
+    } catch (error) {
+      console.error('Error al cerrar la sesión', error);
+    }
+  };
+  const fetchCartItems = async () => {
+    try {
+      const userResponse = await axios.get('/api/sessions/online');
+      const userId = userResponse.data.user_id;
+      const cartResponse = await axios.get(`/api/cart?user_id=${userId}`);
+      console.log('Cart items fetched:', cartResponse.data.response);
+      setCartItems(cartResponse.data.response || []);
+    } catch (error) {
+      console.error('Error al obtener los productos del carrito', error);
+    }
+  };
+  
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchCartItems();
+    }
+  }, [isAuthenticated]);
+  const addToCart = async (product, quantity, selectedSize, selectedColor) => {
+    try {
+      if (!isAuthenticated) {
+        Swal.fire({
+          title: 'Inicia sesión facil',
+          text: 'Necesitas ingresar con google para añadir productos al carrito.',
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonText: 'Iniciar sesión',
+          cancelButtonText: 'Cancelar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            loginWithRedirect();
+          }
+        });
+        return;
+      }
+  
+      const userResponse = await axios.get('/api/sessions/online');
+      if (userResponse.status !== 200) {
+        throw new Error('No se pudo verificar el estado del usuario.');
+      }
+      const userId = userResponse.data.user_id;
+      const response = await axios.post('/api/cart/', {
+        product_id: product._id,
+        user_id: userId,
+        quantity,
+        size: selectedSize,
+        color: selectedColor,
+      });
+      if (response.status === 200) {
+        setCartItems((prevItems) => [
+          ...prevItems,
+          {
+            _id: response.data._id,
+            product_id: product, // Asegúrate de pasar el objeto completo del producto
+            quantity,
+            size: selectedSize,
+            color: selectedColor,
+          },
+        ]);
+        Swal.fire({
+          icon: 'success',
+          title: '¡Producto añadido al carrito!',
+          text: `${product.title} se ha añadido a tu carrito.`,
+          confirmButtonText: 'OK',
+        });
+      } else {
+        throw new Error('No se pudo añadir el producto al carrito.');
+      }
+    } catch (error) {
+      console.error('Error al agregar el producto al carrito', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al añadir al carrito',
+        text: 'No se pudo añadir el producto al carrito. Por favor, inténtalo de nuevo.',
+      });
+    }
+  };
+  
 
   return (
     <CartContext.Provider
@@ -131,6 +221,9 @@ const CartProvider = ({ children }) => {
         cartItems,
         total,
         isAdmin,
+        isAuthenticated, // Pasar el estado de autenticación
+        loginWithRedirect,
+        logoutjwt,
         addToCart,
         calculateTotalPrice,
         borrarTodo,

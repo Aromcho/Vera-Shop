@@ -9,3 +9,31 @@
     right: 0;
     z-index: 100;
 }
+
+.footer a {
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #F2D8A7; /* Change the hover color to match the theme */
+}
+
+.footer .social-icons {
+    margin-top: 15px;
+}
+
+.footer .social-icons a,
+.footer .admin-login {
+    color: #ffffff;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .social-icons a:hover,
+.footer .admin-login:hover {
+    color: #F2D8A7; /* Change the hover color to match the theme */
+    transform: scale(1.1);
+}
+

@@ -8,7 +8,7 @@ import "./Login.css";
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+// LOGIN CON GOOGLE
   const handleSubmit = async (event) => {
     event.preventDefault();
 

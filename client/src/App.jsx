@@ -6,7 +6,6 @@ import Face from "./components/Face/Face.jsx";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer.jsx";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer.jsx";
 import Login from "./pages/Login/Login.jsx";
-import Register from "./pages/Register/Register.jsx";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
@@ -21,7 +20,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Face />} />
             <Route path="/user/login" element={<Login />} />
-            <Route path="/user/register" element={<Register />} />
             <Route path="/products/real" element={<ItemListContainer />} />
             <Route path="/products/real/:category" element={<ItemListContainer />}/>
             <Route path="/products/:productId"element={<ItemDetailContainer />}/>

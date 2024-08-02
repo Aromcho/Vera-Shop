@@ -35,8 +35,9 @@ const Cart = () => {
                 <Col md={4} className="p-3">
                   <Card.Img
                     variant="top"
-                    src={item.product_id.photo || 'https://files.cdn.printful.com/o/upload/bfl-image/42/11354_l_t-shirt-Design-Examples-mockup_Art-with-text.png'}
+                    src={item.product_id.photo}  // Asegúrate de que 'photo' es el nombre correcto
                     style={{ borderRadius: '5px' }}
+                    alt={item.product_id.title}  // Agregar atributo alt para accesibilidad
                   />
                 </Col>
                 <Col

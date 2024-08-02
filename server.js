@@ -8,7 +8,6 @@ import pathHandler from "./src/middlewares/pathHandler.mid.js";
 import path from "path";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import socketCb from "./src/router/index.socket.js";
 import compression from "compression";
 import cors from "cors";
 import winston from "./src/middlewares/winston.mid.js";
@@ -44,9 +43,6 @@ if (cluster.isMaster) {
 
     const nodeServer = createServer(server);
     nodeServer.listen(port, ready);
-
-    const socketServer = new Server(nodeServer);
-    socketServer.on("connection", socketCb);
 
     // Middleware
     server.use(winston);
