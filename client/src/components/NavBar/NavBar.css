@@ -1,17 +1,91 @@
 .custom-navbar {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo transparente inicial */
-    backdrop-filter: blur(10px); /* Aplicar efecto de desenfoque */
-    transition: background-color 0.3s ease-in-out; /* Transición suave del color de fondo */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo transparente inicial */
+  backdrop-filter: blur(10px); /* Aplicar efecto de desenfoque */
+  transition: background-color 0.3s ease-in-out; /* Transición suave del color de fondo */
+}
+
+.custom-navbar .navbar-brand .logo {
+  height: 40px; /* Ajusta la altura según tus necesidades */
+  width: auto;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.logo {
+  border-radius: 10px;
+}
+
+.search-icon {
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.shopping-cart-icon {
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 10px; /* Espacio a la izquierda para separar del ícono de búsqueda */
+}
+
+.cart-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #F2D8A7;
+  color: black;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 2px 5px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  color: white;
+  outline: none;
+  margin-right: 5px;
+  transition: width 0.3s ease-in-out;
+  width: 150px; /* Ajuste del ancho */
+}
+
+.search-button {
+  background-color: #F2D8A7;
+  color: black;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.search-button:hover {
+  background-color: #e6c08c;
+}
+
+/* Estilos adicionales para asegurar alineación correcta */
+
+@media (min-width: 992px) { /* A partir de pantallas de escritorio */
+  .navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
-  
- 
-  .custom-navbar .navbar-brand .logo {
-    height: 40px; /* Ajusta la altura según tus necesidades */
-    width: auto;
-    max-height: 100%;
-    max-width: 100%;
+
+  .d-flex.align-items-center.w-100.justify-content-between {
+    padding-left: 10px; /* Añadir espacio para la hamburguesa */
+    padding-right: 10px; /* Añadir espacio para los íconos a la derecha */
   }
-  .logo {
-    border-radius: 10px;
-  }
-  
+}

@@ -18,6 +18,10 @@ const Item = ({ product, addToCart }) => {
 
   return (
     <Card className="h-100 text-black shadow card-shadow">
+      <Link
+        className="text-decoration-none text-black"
+        to={`/products/${product._id}`}
+      >
       <div className="card-image-wrapper">
         
         <Card.Img
@@ -26,19 +30,11 @@ const Item = ({ product, addToCart }) => {
           className="img-rounded"
         />
       </div>
-      <Link
-        className="text-decoration-none text-black"
-        to={`/products/${product._id}`}
-      >
-        <Card.Body>
+       <Card.Body>
             <Card.Title className="card-title-bold">{product.title}</Card.Title>
             <Card.Text className="price-text">$ {product.price}</Card.Text>
           <Card.Text className="card-text mb-2">{product.category}</Card.Text>
-          <Button
-          size="md"
-          className="custom-button w-100">
-          <p className="mb-0">Ver Detalles</p>
-        </Button>
+
         </Card.Body>
       </Link>
     </Card>

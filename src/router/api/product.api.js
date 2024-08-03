@@ -1,9 +1,11 @@
-import CustomRouter from "../CustomRouter.js";
 import productManager from '../../data/mongo/managers/ProductManager.mongo.js';
+import CustomRouter from "../CustomRouter.js";
+import Product from "../../data/mongo/models/product.model.js"
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
 import __dirname from '../../../utils.js';  // Aseguramos la ruta correcta a utils.js
+
 
 // Configuración de Multer
 const storage = multer.diskStorage({
@@ -41,8 +43,6 @@ class ProductsRouter extends CustomRouter {
         next(error);
       }
     });
-
-    // Ruta para paginar productos con opción de filtrar por categoría
     this.read("/paginate", async (req, res, next) => {
       try {
         const filter = {};
@@ -73,8 +73,25 @@ class ProductsRouter extends CustomRouter {
         return next(error);
       }
     });
+    this.read("/search", async (req, res, next) => {
+      try {
+        const searchQuery = req.query.title;
 
-    // Ruta para leer un producto por ID
+        if (!searchQuery) {
+          return res.status(400).json({ error: 'Debe proporcionar un término de búsqueda válido.' });
+        }
+
+        const products = await Product.find({
+          title: { $regex: searchQuery, $options: "i" }, 
+        });
+
+        return res.status(200).json(products);
+      } catch (error) {
+        console.error('Error en la búsqueda:', error);
+        return res.status(500).json({ error: 'Error interno del servidor.' });
+      }
+    });
+
     this.read("/:pid", async (req, res, next) => {
       try {
         const { pid } = req.params;

@@ -4,7 +4,7 @@ import mongoosePaginate from "mongoose-paginate-v2";
 const collection = "products";
 const schema = new Schema(
   {
-    title: { type: String, require: true },
+    title: { type: String, require: true, index: true },
     photo: { type: String, require: true },
     photo2: { type: String, require: false },
     photo3: { type: String, require: false },
@@ -23,6 +23,8 @@ const schema = new Schema(
 
 // Aplicamos el plugin de paginación al esquema
 schema.plugin(mongoosePaginate);
+// indexado para la busqueda de productos
+schema.index({ title: 'text', description: 'text', category: 'text' });
 
 // Creamos el modelo de producto con el esquema definido
 const Product = model(collection, schema);

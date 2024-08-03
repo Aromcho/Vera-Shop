@@ -22284,3 +22284,124 @@
 [37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
 [37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
 [37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: $regex has to be a string
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: productManager is not defined
+[37mERROR[39m: Cast to ObjectId failed for value "paginate" (type string) at path "_id" for model "products"
+[37mERROR[39m: Cast to ObjectId failed for value "paginate" (type string) at path "_id" for model "products"
+[37mERROR[39m: Cast to ObjectId failed for value "paginate" (type string) at path "_id" for model "products"
+[37mERROR[39m: Cast to ObjectId failed for value "paginate" (type string) at path "_id" for model "products"
+[37mERROR[39m: Cast to ObjectId failed for value "paginate" (type string) at path "_id" for model "products"
+[37mERROR[39m: Cast to ObjectId failed for value "paginate" (type string) at path "_id" for model "products"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Invalid credentials
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"

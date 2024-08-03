@@ -1,16 +1,18 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Image, Badge, Button, ButtonGroup, Form } from 'react-bootstrap';
 import { CartContext } from "../../context/CartContext.jsx";
 import './ItemDetail.css';
+import Swal from 'sweetalert2';
 
 const ItemDetail = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, isAuthenticated, loginWithRedirect } = useContext(CartContext);
   const [mainImage, setMainImage] = useState(product.photo);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const navigate = useNavigate();
 
   const images = [product.photo, product.photo2, product.photo3, product.photo4].filter(Boolean);
 
@@ -37,6 +39,33 @@ const ItemDetail = ({ product }) => {
 
   const handleColorClick = (color) => {
     setSelectedColor(color);
+  };
+
+  const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      Swal.fire({
+        title: 'Inicia sesión facil',
+        text: 'Necesitas ingresar con google para añadir productos al carrito.',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Iniciar sesión',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          loginWithRedirect({
+            appState: {
+              returnTo: window.location.pathname,
+              product,
+              quantity,
+              selectedSize,
+              selectedColor,
+            },
+          });
+        }
+      });
+    } else {
+      addToCart(product, quantity, selectedSize, selectedColor);
+    }
   };
 
   return (
@@ -130,7 +159,7 @@ const ItemDetail = ({ product }) => {
               <Col>
                 <Button 
                   variant="outline-primary" 
-                  onClick={() => addToCart(product, quantity, selectedSize, selectedColor)} 
+                  onClick={handleAddToCart} 
                   disabled={!selectedSize || !selectedColor}
                   className="custom-button"
                 >

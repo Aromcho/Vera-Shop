@@ -74,6 +74,7 @@ const ItemListContainer = () => {
       addToCart={addToCart}
       category={category}
       setCategory={setCategory}
+      initialProducts={products} // Pasar productos paginados como initialProducts
     />
   );
 };
