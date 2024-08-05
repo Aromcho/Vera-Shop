@@ -1,7 +1,6 @@
 .horizontal-product-list-container {
   overflow-x: auto; /* Permite el desplazamiento horizontal */
-  position: relative;
-  top:-50px;
+  
 
 }
 
@@ -14,4 +13,15 @@
 .item-wrapper {
   flex: 0 0 auto; /* Asegura que cada elemento mantenga su tamaño y no se encoja */
   width: 200px; /* Ajusta el ancho de cada producto */
+}
+
+/* media query para mobile */
+
+@media (max-width: 768px) {
+  .horizontal-product-list-container {
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    position: relative;
+    top:-50px;
+  
+  }
 }
