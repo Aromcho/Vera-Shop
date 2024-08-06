@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { CartContext } from '../../context/CartContext.jsx';
+import "./Carrito.css";
 
 const Cart = () => {
   const {
