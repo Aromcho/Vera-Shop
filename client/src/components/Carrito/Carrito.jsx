@@ -30,7 +30,7 @@ const Cart = () => {
         <>
           {cartItems.map((item) => (
             <Card
-              className="mb-3"
+              className="cart-item-card mb-3" // Añadimos un className específico
               key={item._id}
               style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
             >
@@ -38,9 +38,9 @@ const Cart = () => {
                 <Col md={4} className="p-3">
                   <Card.Img
                     variant="top"
-                    src={item.product_id.photo}  // Asegúrate de que 'photo' es el nombre correcto
+                    src={item.product_id.photo}
                     style={{ borderRadius: '5px' }}
-                    alt={item.product_id.title}  // Agregar atributo alt para accesibilidad
+                    alt={item.product_id.title}
                   />
                 </Col>
                 <Col
@@ -105,7 +105,7 @@ const Cart = () => {
               </Row>
             </Card>
           ))}
-          <div className="d-flex justify-content-between align-items-center mt-4">
+          <div className="total-container">
             <h4>Total: ${total.toFixed(2)}</h4>
             <div>
               <Button variant="danger" onClick={() => borrarTodo()}>

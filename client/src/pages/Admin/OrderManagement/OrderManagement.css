@@ -1,46 +1,49 @@
-.order-table {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .order-table thead {
-    background-color: #333;
-    color: white;
-  }
-  
-  .order-table th, .order-table td {
-    vertical-align: middle;
-  }
-  
-  .order-table th {
-    padding: 15px;
-  }
-  
-  .order-table td {
-    padding: 10px;
-  }
-  
-  .order-table tbody tr:hover {
-    background-color: #f2f2f2;
-  }
-  
-  .order-table .btn-outline-secondary, .order-table .btn-outline-primary, .order-table .btn-outline-danger {
-    transition: all 0.3s ease;
-  }
-  
-  .order-table .btn-outline-secondary:hover {
-    background-color: #6c757d;
-    color: white;
-  }
-  
-  .order-table .btn-outline-primary:hover {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .order-table .btn-outline-danger:hover {
-    background-color: #dc3545;
-    color: white;
-  }
-  
+.order-card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.order-card .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.order-card .card-text {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.order-card .card-text strong {
+  color: #007bff;
+}
+
+.order-card .btn-outline-secondary,
+.order-card .btn-outline-primary,
+.order-card .btn-outline-danger {
+  transition: all 0.3s ease;
+}
+
+.order-card .btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: white;
+}
+
+.order-card .btn-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.order-card .btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}

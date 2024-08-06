@@ -10,6 +10,7 @@ import Checkout from "./components/Checkout/Checkout.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import OrderTracking from "./components/OrderTracking/OrderTracking.jsx";
 
 
 
@@ -24,7 +25,7 @@ function App() {
             <Route path="/products/real" element={<ItemListContainer />} />
             <Route path="/products/real/:category" element={<ItemListContainer />}/>
             <Route path="/products/:productId"element={<ItemDetailContainer />}/>
-            <Route path="/cart" element={<Cart />} /> 
+            <Route path="/order-tracking/:orderId" element={<OrderTracking/>} />            <Route path="/cart" element={<Cart />} /> 
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>

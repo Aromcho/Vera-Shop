@@ -1,57 +1,53 @@
-/* Ajusta el margen superior del contenedor de Checkout para evitar superposición con el navbar */
 .checkout-container {
-  height: calc(100vh - 60px); /* Ajusta el valor según la altura de tu navbar */
+  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  margin-top: 60px; /* Ajusta este valor según la altura de tu navbar */
+  margin-top: 60px;
+  background-color: #f8f9fa;
 }
 
-/* Ajuste adicional para asegurar que el contenido no esté tapado */
 .checkout-content {
-  width: 100vh;
-  max-width: 800px; /* Ajusta según tus necesidades */
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Asegura que el stepper esté centrado y no tapado */
-.checkout-stepper-container {
-  width: 100vh;
-  display: flex;
-  justify-content: center;
+.checkout-stepper {
+  width: 100%;
   margin-bottom: 20px;
 }
 
-/* Ajusta el contenedor principal para centrar el cuadro */
 .checkout-card {
   display: flex;
-  flex-direction: column; /* Alinea los elementos verticalmente */
-  justify-content: center; /* Centra el contenido verticalmente */
-  align-items: center; /* Centra el contenido horizontalmente */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 100%; /* Asegura que el contenedor ocupe todo el alto disponible */
-  max-width: 800px; /* Ajusta según tus necesidades */
-  margin: 0 auto; /* Centra el contenedor horizontalmente */
-  padding: 20px; /* Espaciado interno opcional */
-  box-sizing: border-box; /* Incluye padding en el cálculo del alto y ancho total */
+  max-width: 800px;
+  margin: 20px 0;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Centra el contenido dentro del cuadro */
 .checkout-card .MuiCardContent-root {
   display: flex;
-  flex-direction: column; /* Alinea los elementos verticalmente */
-  justify-content: center; /* Centra el contenido verticalmente */
-  align-items: center; /* Centra el contenido horizontalmente */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  text-align: center; /* Centra el texto dentro del contenedor */
+  text-align: center;
 }
 
-/* Ajusta el estilo de los títulos y textos si es necesario */
 .checkout-title,
 .checkout-total {
-  margin: 10px 0; /* Espaciado entre los elementos de texto */
+  margin: 10px 0;
+}
+
+.checkout-buttons {
+  margin-top: 20px;
 }

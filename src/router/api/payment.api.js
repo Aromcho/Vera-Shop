@@ -3,7 +3,8 @@ import { createPayment } from "../../controller/payment.controller.js";
 
 class PaymentRouter extends CustomRouter{
     init() {
-        this.create("/", ["USER","ADMIN"], createPayment );
+        this.create("/", createPayment );
     }
 }
 
+export default new PaymentRouter().getRouter();

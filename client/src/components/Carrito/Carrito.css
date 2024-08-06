@@ -1,33 +1,56 @@
-/* Contenedor principal para el carrito */
 .cart-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  padding-top: 100px;
+  background-color: #f8f9fa;
 }
 
-/* Ajuste del tamaño de las tarjetas de carrito */
 .card {
   width: 100%;
-  max-width: 600px; /* Limita el ancho máximo de las tarjetas */
+  max-width: 600px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Espaciado del título y el total */
-h2 {
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5rem;
   font-weight: bold;
   color: #333;
 }
 
-.mb-4 {
-  margin-bottom: 1.5rem;
+.card-text {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
 }
 
-.mt-4 {
-  margin-top: 1.5rem;
+.total-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
+.total-container h4 {
+  font-weight: bold;
+  color: #333;
+}
+
+.total-container button {
+  margin-left: 10px;
 }

@@ -35,8 +35,8 @@ class CustomRouter {
                 token = verifyToken(token);
                 const { role, email } = token;
                 if (
-                    (policies.includes("user") && role === 0) ||
-                    (policies.includes("admin") && role === 1)
+                    (policies.includes("USER") && role === 0) ||
+                    (policies.includes("ADMIN") && role === 1)
                 ) {
                     const user = await usersManager.readByEmail(email);
                     req.user = user; // Proteger la contraseña del usuario!!!
