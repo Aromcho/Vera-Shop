@@ -53,9 +53,9 @@ const Checkout = () => {
     switch (step) {
       case 0:
         return (
-          <Card className="checkout-card  mt-5">
+          <Card className="checkout-card">
             <CardContent>
-              <Typography variant="h5" component="h2" className="checkout-title  mt-5">Resumen de la compra</Typography>
+              <Typography variant="h5" component="h2" className="checkout-title">Resumen de la compra</Typography>
               <List>
                 {cartItems.map((product) => (
                   <ListItem key={product._id}>
@@ -70,9 +70,9 @@ const Checkout = () => {
         );
       case 1:
         return (
-          <Card className="checkout-card  mt-5">
+          <Card className="checkout-card">
             <CardContent>
-              <Typography variant="h5" component="h2" className="checkout-title  mt-5">Detalles de la compra</Typography>
+              <Typography variant="h5" component="h2" className="checkout-title">Detalles de la compra</Typography>
               <form onSubmit={handleFormSubmit}>
                 <TextField
                   label="Dirección de envío"
@@ -96,15 +96,18 @@ const Checkout = () => {
                     <MenuItem value="cash">Efectivo</MenuItem>
                   </Select>
                 </FormControl>
+                <Button type="submit" variant="contained" color="primary" className="checkout-submit-button">
+                  {activeStep === steps.length - 1 ? 'Finalizar compra' : 'Siguiente'}
+                </Button>
               </form>
             </CardContent>
           </Card>
         );
       case 2:
         return (
-          <Card className="checkout-card  mt-5">
+          <Card className="checkout-card">
             <CardContent>
-              <Typography variant="h5" component="h2" className="checkout-title  mt-5">Confirmación</Typography>
+              <Typography variant="h5" component="h2" className="checkout-title">Confirmación</Typography>
               <Typography variant="body1" className="checkout-confirmation">Tu orden está casi lista para ser procesada.</Typography>
             </CardContent>
           </Card>
@@ -115,15 +118,15 @@ const Checkout = () => {
   };
 
   return (
-    <Container maxWidth="md" className="mt-5">
-      <Stepper activeStep={activeStep} alternativeLabel className="checkout-stepper mt-5">
+    <Container maxWidth="md" className="checkout-container">
+      <Stepper activeStep={activeStep} alternativeLabel className="checkout-stepper">
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
-      <div>
+      <div className="checkout-content">
         {getStepContent(activeStep)}
         <Grid container spacing={2} justifyContent="flex-end" className="checkout-buttons">
           <Grid item>
@@ -141,3 +144,4 @@ const Checkout = () => {
 };
 
 export default Checkout;
+

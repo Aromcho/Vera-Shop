@@ -1,0 +1,33 @@
+/* Contenedor principal para el carrito */
+.cart-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Ajuste del tamaño de las tarjetas de carrito */
+.card {
+  width: 100%;
+  max-width: 600px; /* Limita el ancho máximo de las tarjetas */
+}
+
+/* Espaciado del título y el total */
+h2 {
+  font-weight: bold;
+  color: #333;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}

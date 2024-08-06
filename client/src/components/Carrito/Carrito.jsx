@@ -12,15 +12,17 @@ const Cart = () => {
     calculateTotalPrice,
     total,
     borrarTodo,
+    aumentarCantidad,
+    disminuirCantidad
   } = useContext(CartContext);
 
   useEffect(() => {
     fetchCartItems();
     calculateTotalPrice();
-  }, [cartItems]);
+  }, [fetchCartItems, calculateTotalPrice]);
 
   return (
-    <Container className="mt-5">
+    <Container className="cart-container">
       <h2 className="mb-4">Tu Carrito</h2>
       {cartItems.length === 0 ? (
         <p>No hay productos en tu carrito.</p>
@@ -103,7 +105,7 @@ const Cart = () => {
               </Row>
             </Card>
           ))}
-          <div className="d-flex justify-content-between mt-4">
+          <div className="d-flex justify-content-between align-items-center mt-4">
             <h4>Total: ${total.toFixed(2)}</h4>
             <div>
               <Button variant="danger" onClick={() => borrarTodo()}>
