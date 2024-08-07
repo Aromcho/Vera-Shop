@@ -37,12 +37,24 @@ const OrderTracking = () => {
           Seguimiento de Pedido
         </Typography>
         <div className="order-details">
-          <Typography variant="body1" className="detail-item"><strong>Estado:</strong> {order.state}</Typography>
-          <Typography variant="body1" className="detail-item"><strong>Cantidad de productos:</strong> {order.quantity}</Typography>
-          <Typography variant="body1" className="detail-item"><strong>Total:</strong> ${order.ticket.toFixed(2)}</Typography>
-          <Typography variant="body1" className="detail-item"><strong>Dirección:</strong> {order.address}</Typography>
-          <Typography variant="body1" className="detail-item"><strong>Método de Pago:</strong> {order.paymentMethod}</Typography>
-          <Typography variant="body1" className="detail-item"><strong>Método de Entrega:</strong> {order.deliveryMethod}</Typography>
+          <Typography variant="body1" className="detail-item">
+            <strong>Estado:</strong> {order.state}
+          </Typography>
+          <Typography variant="body1" className="detail-item">
+            <strong>Cantidad de productos:</strong> {order.quantity}
+          </Typography>
+          <Typography variant="body1" className="detail-item">
+            <strong>Total:</strong> ${order.ticket.toFixed(2)}
+          </Typography>
+          <Typography variant="body1" className="detail-item">
+            <strong>Dirección:</strong> {order.address}
+          </Typography>
+          <Typography variant="body1" className="detail-item">
+            <strong>Método de Pago:</strong> {order.paymentMethod}
+          </Typography>
+          <Typography variant="body1" className="detail-item">
+            <strong>Método de Entrega:</strong> {order.deliveryMethod}
+          </Typography>
         </div>
       </Card>
     </Container>
@@ -50,4 +62,3 @@ const OrderTracking = () => {
 };
 
 export default OrderTracking;
-

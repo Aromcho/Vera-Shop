@@ -1,53 +1,52 @@
-.contenedor {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-}.order-tracking-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5; /* Color de fondo suave */
-    padding: 20px;
-  }
-  
-  .order-tracking-card {
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .tracking-title {
-    margin-bottom: 20px;
-    font-weight: bold;
-    text-align: center;
-    color: #333;
-  }
-  
-  .order-details {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .detail-item {
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.5;
-  }
-  
-  .detail-item strong {
-    color: #007bff;
-  }
-  
-  .error-message, .loading-message {
-    color: #dc3545;
-    font-size: 1.2rem;
-    text-align: center;
-  }
-  
+.order-tracking-container {
+  display: flex;
+  justify-content: flex-start;  /* Mantén la alineación hacia el inicio */
+  align-items: center;      /* Centra verticalmente */
+  height: calc(100vh - 64px); /* Ajusta según la altura del navbar */
+  background-color: #f5f5f5; /* Color de fondo suave */
+  padding: 20px;
+  margin-top: 64px; /* Ajusta según la altura del navbar */
+}
+
+.order-tracking-card {
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido dentro de la tarjeta */
+  text-align: center; /* Centra el texto dentro de la tarjeta */
+  margin-left: 20vh; /* Mueve la tarjeta hacia la derecha */
+}
+
+
+.tracking-title {
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.order-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-item {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.detail-item strong {
+  color: #007bff;
+}
+
+.error-message, .loading-message {
+  color: #dc3545;
+  font-size: 1.2rem;
+  text-align: center;
+}
