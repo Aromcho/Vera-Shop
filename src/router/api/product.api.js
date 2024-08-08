@@ -6,7 +6,6 @@ import fs from 'fs';
 import path from 'path';
 import __dirname from '../../../utils.js';  // Aseguramos la ruta correcta a utils.js
 
-
 // Configuración de Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -28,6 +27,23 @@ const upload = multer({ storage });
 
 class ProductsRouter extends CustomRouter {
   init() {
+    this.read("/images", async (req, res, next) => {
+      try {
+        const dir = path.join(__dirname, 'uploads');
+        if (!fs.existsSync(dir)) {
+          return res.status(404).json({ error: 'El directorio de imágenes no existe.' });
+        }
+
+        const files = fs.readdirSync(dir);
+        const baseUrl = req.protocol + '://' + req.get('host');
+        const imageUrls = files.map(file => `${baseUrl}/uploads/${file}`);
+
+        return res.status(200).json(imageUrls);
+      } catch (error) {
+        console.error('Error al obtener las imágenes:', error);
+        return res.status(500).json({ error: 'Error interno del servidor.' });
+      }
+    });
     // Ruta para leer todos los productos o filtrar por categoría
     this.read("/", async (req, res, next) => {
       try {
@@ -43,6 +59,7 @@ class ProductsRouter extends CustomRouter {
         next(error);
       }
     });
+
     this.read("/paginate", async (req, res, next) => {
       try {
         const filter = {};
@@ -73,6 +90,7 @@ class ProductsRouter extends CustomRouter {
         return next(error);
       }
     });
+
     this.read("/search", async (req, res, next) => {
       try {
         const searchQuery = req.query.title;
@@ -103,6 +121,25 @@ class ProductsRouter extends CustomRouter {
         }
       } catch (error) {
         next(error);
+      }
+    });
+
+    // Nueva Ruta para obtener imágenes
+    this.read("/images", async (req, res, next) => {
+      try {
+        const dir = path.join(__dirname, 'uploads');
+        if (!fs.existsSync(dir)) {
+          return res.status(404).json({ error: 'El directorio de imágenes no existe.' });
+        }
+
+        const files = fs.readdirSync(dir);
+        const baseUrl = req.protocol + '://' + req.get('host');
+        const imageUrls = files.map(file => `${baseUrl}/uploads/${file}`);
+
+        return res.status(200).json(imageUrls);
+      } catch (error) {
+        console.error('Error al obtener las imágenes:', error);
+        return res.status(500).json({ error: 'Error interno del servidor.' });
       }
     });
 

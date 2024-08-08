@@ -9,7 +9,7 @@ const formatPrice = (price) => {
 
 const ProductList = ({ productos, handleEdit, handleDelete }) => {
   return (
-    <Row className="pt-3">
+    <Row className="pt-3 ">
       {productos.map((product) => (
         <Col xs={12} md={6} lg={12} key={product._id} className="mb-4">
           <Card className="d-flex flex-row">
