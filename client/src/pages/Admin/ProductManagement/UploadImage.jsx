@@ -38,7 +38,13 @@ const UploadImage = ({ setPhotoUrl, photoField }) => {
           )}
         </div>
       </Form.Label>
-      <Form.Control type="file" id={`imageUpload-${photoField}`} onChange={handleFileChange} style={{ display: 'none' }} />
+      <Form.Control 
+        type="file" 
+        id={`imageUpload-${photoField}`} 
+        // Elimina controlId si ya estás usando id
+        onChange={handleFileChange} 
+        style={{ display: 'none' }} 
+      />
     </div>
   );
 };
