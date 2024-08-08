@@ -21,3 +21,4 @@
 [37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
 [37mERROR[39m: User already exists with that email.
 [37mERROR[39m: orders validation failed: address: Path `address` is required.
+[37mERROR[39m: Cast to ObjectId failed for value "images" (type string) at path "_id" for model "products"
