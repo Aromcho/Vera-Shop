@@ -118,7 +118,42 @@ button:hover {
 .facebook-float {
   background-color: #3b5998; /* Color para Facebook */
 }
+.scrolling-text-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  top: 10%;
+  background-color: #F2D8A7;
+}
+
+.scrolling-text {
+  display: inline-block;
+  padding-left: 40%;
+  animation: scrollText 10s linear infinite;
+  font-size: 1.2rem;
+  color: black;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
 
 @media (max-width: 768px) {
   /* Los estilos responsivos pueden ser definidos aquí si es necesario */
+  .scrolling-text-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    top: 65px;
+    background-color: #F2D8A7;
+  }
 }
