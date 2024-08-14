@@ -11,31 +11,35 @@ const Face = () => {
     <div>
       {/* Sección Hero */}
       <div className="hero d-flex align-items-center justify-content-center flex-column">
-        <div className="overlay w-100 d-flex align-items-center justify-content-center flex-column">
-          <h1 className="banner display-3 text-white p-2">Dolores Pidré</h1>
-          <p className="lead text-light">Descubre la Esencia de la Moda Italiana.</p>
+    <div className="overlay w-100 d-flex align-items-center justify-content-center flex-column">
+      <h1 className="banner display-3 text-white p-2">Dolores Pidré</h1>
 
-          <Link to="/products/real">
-            <Button variant="outline-light" size="lg">
-              Explora Nuestros Productos
-            </Button>
-          </Link>
-
-          <div className="social-icons mt-3">
-            <a href="https://www.instagram.com/dolorespidre/?hl=es" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline-light" size="lg" className="mx-2">
-                <i className="bi bi-instagram"></i>
-              </Button>
-            </a>
-            <a href="https://www.facebook.com/dolorespidre/" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline-light" size="lg" className="mx-2">
-                <i className="bi bi-facebook"></i>
-              </Button>
-            </a>
-          </div>
-        </div>
+      <div className="scrolling-text-container">
+        <p className="scrolling-text mb-0">Único local en Galería París.</p>
       </div>
 
+      <p className="lead text-light">Descubre la Esencia de la Moda Italiana.</p>
+
+      <Link to="/products/real">
+        <Button variant="outline-light" size="lg">
+          Explora Nuestros Productos
+        </Button>
+      </Link>
+
+      <div className="social-icons mt-3">
+        <a href="https://www.instagram.com/dolorespidre/?hl=es" target="_blank" rel="noopener noreferrer">
+          <Button variant="outline-light" size="lg" className="mx-2">
+            <i className="bi bi-instagram"></i>
+          </Button>
+        </a>
+        <a href="https://www.facebook.com/dolorespidre/" target="_blank" rel="noopener noreferrer">
+          <Button variant="outline-light" size="lg" className="mx-2">
+            <i className="bi bi-facebook"></i>
+          </Button>
+        </a>
+      </div>
+    </div>
+  </div>
       {/* Sección de Categorías Destacadas */}
       <FeaturedCategories />
 
