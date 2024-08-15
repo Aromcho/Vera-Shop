@@ -9,28 +9,65 @@
   background-color: #f8f9fa;
 }
 
-.card {
-  width: 100%;
-  max-width: 600px;
+.cart-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #343a40;
+  text-align: center;
   margin-bottom: 20px;
+}
+
+.empty-cart {
+  font-size: 1.2rem;
+  color: #333;
+  text-align: center;
+}
+
+.cart-item-card {
   border: none;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-.card-body {
-  padding: 20px;
+.cart-item-image {
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 
-.card-title {
+.cart-item-title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: #343a40;
 }
 
-.card-text {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
+.cart-item-text {
+  font-size: 1rem;
+  color: #007bff;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-button {
+  background-color: #F2D8A7 !important;
+  border-color: #F2D8A7 !important;
+  color: black !important;
+}
+
+.quantity-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.remove-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
 }
 
 .total-container {
@@ -38,12 +75,12 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   margin-top: 20px;
-  padding: 15px;
+  padding: 20px;
   border-radius: 8px;
   background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .total-container h4 {
@@ -51,6 +88,35 @@
   color: #333;
 }
 
-.total-container button {
-  margin-left: 10px;
+.total-button {
+  background-color: #F2D8A7 !important;
+  border-color: #F2D8A7 !important;
+  color: black !important;
+}
+
+.total-button:hover {
+  background-color: #e6c08c !important;
+  border-color: #e6c08c !important;
+}
+
+.custom-danger {
+  background-color: #e74c3c !important;
+  border-color: #e74c3c !important;
+  color: white !important;
+}
+
+.custom-danger:hover {
+  background-color: #c0392b !important;
+  border-color: #c0392b !important;
+}
+
+.custom-success {
+  background-color: #2ecc71 !important;
+  border-color: #2ecc71 !important;
+  color: white !important;
+}
+
+.custom-success:hover {
+  background-color: #27ae60 !important;
+  border-color: #27ae60 !important;
 }

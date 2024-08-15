@@ -15,7 +15,7 @@ const Face = () => {
       <h1 className="banner display-3 text-white p-2">Dolores Pidré</h1>
 
       <div className="scrolling-text-container">
-        <p className="scrolling-text mb-0">Único local en Galería París.</p>
+        <p className="scrolling-text mb-0">Único local en Galería París. Av. Rivadavia 4975 local 67</p>
       </div>
 
       <p className="lead text-light">Descubre la Esencia de la Moda Italiana.</p>

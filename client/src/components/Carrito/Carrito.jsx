@@ -23,72 +23,57 @@ const Cart = () => {
 
   return (
     <Container className="cart-container">
-      <h2 className="mb-4">Tu Carrito</h2>
+      <h2 className="mb-4 cart-title">Tu Carrito</h2>
       {cartItems.length === 0 ? (
-        <p>No hay productos en tu carrito.</p>
+        <p className="empty-cart">No hay productos en tu carrito.</p>
       ) : (
         <>
           {cartItems.map((item) => (
-            <Card
-              className="cart-item-card mb-3" // Añadimos un className específico
-              key={item._id}
-              style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
-            >
+            <Card className="cart-item-card mb-3" key={item._id}>
               <Row className="no-gutters">
                 <Col md={4} className="p-3">
                   <Card.Img
                     variant="top"
                     src={item.product_id.photo}
-                    style={{ borderRadius: '5px' }}
+                    className="cart-item-image"
                     alt={item.product_id.title}
                   />
                 </Col>
-                <Col
-                  md={8}
-                  className="d-flex flex-column justify-content-between"
-                >
+                <Col md={8} className="d-flex flex-column justify-content-between p-3">
                   <Card.Body>
                     {item.product_id && (
                       <>
-                        <Card.Title
-                          style={{ fontSize: '1.25rem', fontWeight: 'bold' }}
-                        >
+                        <Card.Title className="cart-item-title">
                           {item.product_id.title}
                         </Card.Title>
-                        <Card.Text
-                          style={{ fontSize: '1rem', color: '#007bff' }}
-                        >
+                        <Card.Text className="cart-item-text">
                           Precio: ${item.product_id.price.toFixed(2)}
                         </Card.Text>
-                        <Card.Text
-                          style={{ fontSize: '1rem', color: '#007bff' }}
-                        >
+                        <Card.Text className="cart-item-text">
                           Talle: {item.size}
                         </Card.Text>
-                        <Card.Text
-                          style={{ fontSize: '1rem', color: '#007bff' }}
-                        >
+                        <Card.Text className="cart-item-text">
                           Color: {item.color}
                         </Card.Text>
-                        <Card.Text
-                          style={{ fontSize: '1rem', color: '#007bff' }}
-                        >
+                        <Card.Text className="cart-item-text">
                           Cantidad: {item.quantity}
                         </Card.Text>
                       </>
                     )}
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
+                    <div className="d-flex justify-content-between align-items-center mt-3">
+                      <div className="quantity-controls">
                         <Button
-                          variant="outline-secondary"
+                          variant="outline-custom"
                           onClick={() => disminuirCantidad(item._id)}
+                          className="quantity-button"
                         >
                           -
                         </Button>
-                        <span className="mx-2">{item.quantity}</span>
+                        <span className="mx-2 quantity-number">{item.quantity}</span>
                         <Button
-                          variant="outline-secondary"
+                          variant="outline-custom"
                           onClick={() => aumentarCantidad(item._id)}
+                          className="quantity-button"
                         >
                           +
                         </Button>
@@ -96,6 +81,7 @@ const Cart = () => {
                       <Button
                         variant="outline-danger"
                         onClick={() => borrarProducto(item._id)}
+                        className="remove-button"
                       >
                         <i className="bi bi-trash"></i>
                       </Button>
@@ -108,10 +94,10 @@ const Cart = () => {
           <div className="total-container">
             <h4>Total: ${total.toFixed(2)}</h4>
             <div>
-              <Button variant="danger" onClick={() => borrarTodo()}>
+              <Button variant="custom-danger" onClick={() => borrarTodo()} className="total-button">
                 Vaciar carrito
               </Button>
-              <Button as={Link} to="/checkout" variant="success" className="ml-2">
+              <Button as={Link} to="/checkout" variant="custom-success" className="total-button">
                 Ir a pagar
               </Button>
             </div>
