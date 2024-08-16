@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Search } from 'react-bootstrap-icons';
 import {
   Container,
   ButtonGroup,
@@ -110,22 +111,25 @@ const ItemList = ({
       <div className="hero-list">
         <div className="overlay w-100 d-flex align-items-center justify-content-center flex-column">
           <h6 className="mt-5">Descubre la Esencia de la Moda Italiana.</h6>
-          <Form className="w-50 mt-3" onSubmit={(e) => e.preventDefault()}>
-            <FormControl
-              type="text"
-              placeholder="Buscar"
-              className="mr-sm-2"
-              value={searchQuery}
-              onChange={handleSearchChange}
-              ref={searchInputRef}
-            />
-            <Button
-              variant="outline-dark"
-              onClick={() => fetchProducts(searchQuery)}
-            >
-              Buscar
-            </Button>
-          </Form>
+          <Form className="w-100 mt-3" onSubmit={(e) => e.preventDefault()}>
+      <div className="input-group search-bar">
+        <FormControl
+          type="text"
+          placeholder="Buscar"
+          className="search-input"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          ref={searchInputRef}
+        />
+        <Button
+  variant="link"
+  className="search-button"
+  onClick={() => fetchProducts(searchQuery)}
+>
+  <Search />
+</Button>
+      </div>
+    </Form>
         </div>
       </div>
       <Container className="p-1 mb-1">

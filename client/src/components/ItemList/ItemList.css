@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center;
     color: white;
-    height: 40vh;
+    height: 25vh;
     
 }
 .item-list {
@@ -12,8 +12,10 @@
     gap: 0.5rem;
 }
 
+
 @media screen and (min-width: 768px) {
     .item-list {
         grid-template-columns: 1fr 1fr 1fr;
     }
+    
 }

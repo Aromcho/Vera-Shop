@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Image, Badge, Button, ButtonGroup, Form } from 'react-bootstrap';
 import { CartContext } from "../../context/CartContext.jsx";
@@ -15,6 +15,10 @@ const ItemDetail = ({ product }) => {
   const navigate = useNavigate();
 
   const images = [product.photo, product.photo2, product.photo3, product.photo4].filter(Boolean);
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Desplaza la página hacia arriba al cargar el componente
+  }, []);
 
   const handleImageClick = (index) => {
     setMainImage(images[index]);
