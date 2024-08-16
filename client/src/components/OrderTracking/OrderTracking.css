@@ -1,48 +1,66 @@
 .order-tracking-container {
   display: flex;
-  justify-content: flex-start;  /* Mantén la alineación hacia el inicio */
-  align-items: center;      /* Centra verticalmente */
-  height: calc(100vh - 64px); /* Ajusta según la altura del navbar */
-  background-color: #f5f5f5; /* Color de fondo suave */
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 64px);
+  background-color: #f2f9f6;
   padding: 20px;
-  margin-top: 64px; /* Ajusta según la altura del navbar */
+  margin-top: 64px;
 }
 
 .order-tracking-card {
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  width: 100%;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  text-align: center;
   max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centra el contenido dentro de la tarjeta */
-  text-align: center; /* Centra el texto dentro de la tarjeta */
-  margin-left: 20vh; /* Mueve la tarjeta hacia la derecha */
+  width: 100%;
 }
 
+.celebration-icon {
+  font-size: 3rem;
+  color: #ff9800;
+  margin-bottom: 20px;
+}
 
 .tracking-title {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: bold;
   color: #333;
+}
+
+.tracking-subtitle {
+  margin-bottom: 30px;
+  color: #666;
 }
 
 .order-details {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
 .detail-item {
-  font-size: 1.1rem;
-  color: #555;
-  line-height: 1.5;
+  font-size: 1.2rem;
+  color: #444;
 }
 
 .detail-item strong {
   color: #007bff;
+}
+
+.whatsapp-button {
+  margin-top: 20px;
+  background-color: #25D366 !important;
+  color: white !important;
+  text-transform: none !important;
+  font-size: 1rem !important;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe57 !important;
 }
 
 .error-message, .loading-message {

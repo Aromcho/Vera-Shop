@@ -142,11 +142,20 @@ const CartProvider = ({ children }) => {
       const userId = userResponse.data.user_id;
       const cartResponse = await axios.get(`/api/cart?user_id=${userId}`);
       console.log('Cart items fetched:', cartResponse.data.response);
-      setCartItems(cartResponse.data.response || []);
+      
+      // Verifica si `photo` está presente en cada producto
+      const itemsWithPhotos = cartResponse.data.response.map(item => ({
+        ...item,
+        product_id: {
+          ...item.product_id,
+          photo: item.product_id.photo || '/path/to/default/image.jpg', // Fallback en caso de que la imagen no esté disponible
+        }
+      }));
+  
+      setCartItems(itemsWithPhotos || []);
     } catch (error) {
       console.error('Error al obtener los productos del carrito', error);
-    }
-  };
+    }}
 
   useEffect(() => {
     if (isAuthenticated) {

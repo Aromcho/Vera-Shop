@@ -15,6 +15,7 @@ const Checkout = () => {
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [zipCode, setZipCode] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('credit');
   const [storePaymentOption, setStorePaymentOption] = useState('online');
   const { cartItems, total, fetchCartItems } = useContext(CartContext);
@@ -46,6 +47,7 @@ const Checkout = () => {
           quantity: cartItems.reduce((acc, item) => acc + item.quantity, 0),
           ticket: total,
           address: deliveryMethod === 'home' ? `${address}, ${city}, ${zipCode}` : 'Retiro en tienda',
+          phoneNumber: phoneNumber,
           paymentMethod: paymentMethod,
           deliveryMethod: deliveryMethod,
           storePaymentOption: storePaymentOption,
@@ -114,6 +116,16 @@ const Checkout = () => {
                         placeholder="Ingresa tu nombre completo"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
+                      />
+                    </Form.Group>
+                    <Form.Group controlId="formPhoneNumber" className="mt-3">
+                      <Form.Label>Número de Teléfono</Form.Label>
+                      <Form.Control
+                        type="tel"
+                        placeholder="Ingresa tu número de teléfono"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
                         required
                       />
                     </Form.Group>

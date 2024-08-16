@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Card, Typography } from '@mui/material';
+import { Container, Card, Typography, Button } from '@mui/material';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import "./OrderTracking.css";
+import CelebrationIcon from '@mui/icons-material/Celebration';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import './OrderTracking.css';
 
 const OrderTracking = () => {
   const { orderId } = useParams();
@@ -31,11 +33,17 @@ const OrderTracking = () => {
   }
 
   return (
-    <Container className='order-tracking-container' maxWidth="md">
+    <Container className="order-tracking-container" maxWidth="md">
       <Card className="order-tracking-card">
-        <Typography variant="h5" component="h2" className="tracking-title">
-          Seguimiento de Pedido
+        <CelebrationIcon className="celebration-icon" />
+        <Typography variant="h4" component="h2" className="tracking-title">
+          ¡Gracias por tu compra!
         </Typography>
+
+        <Typography variant="h6" component="h3" className="tracking-subtitle">
+          Tu pedido ha sido procesado exitosamente.
+        </Typography>
+
         <div className="order-details">
           <Typography variant="body1" className="detail-item">
             <strong>Estado:</strong> {order.state}
@@ -55,7 +63,20 @@ const OrderTracking = () => {
           <Typography variant="body1" className="detail-item">
             <strong>Método de Entrega:</strong> {order.deliveryMethod}
           </Typography>
+          
         </div>
+
+        <Button
+          variant="contained"
+          color="success"
+          startIcon={<WhatsAppIcon />}
+          href={`https://wa.me/${order.phoneNumber}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whatsapp-button"
+        >
+          Consulta el estado de tu envío
+        </Button>
       </Card>
     </Container>
   );

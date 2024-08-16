@@ -45,7 +45,6 @@
 
 .cart-item-text {
   font-size: 1rem;
-  color: #007bff;
 }
 
 .quantity-controls {
@@ -72,6 +71,7 @@
 
 .total-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -83,15 +83,46 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.total-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.total-buttons {
+  width: 100%;
+  display: flex;
+  gap: 15px; /* Espacio entre los botones */
+}
+
 .total-container h4 {
+
   font-weight: bold;
   color: #333;
+  margin-right: auto; /* Asegura que el título del total esté a la izquierda y los botones a la derecha */
 }
 
 .total-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   background-color: #F2D8A7 !important;
   border-color: #F2D8A7 !important;
   color: black !important;
+  padding: 10px 10px; /* Tamaño adecuado para los botones */
+  font-size: 1rem;
+}
+
+.total-button i {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
 }
 
 .total-button:hover {

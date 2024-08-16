@@ -37,12 +37,12 @@ const schema = new Schema(
 
 schema.pre('find', function() {
   this.populate('user_id', 'email name photo -_id')
-     .populate('product_id', 'title price -_id');
+     .populate('product_id', 'title price photo -_id'); 
 });
 
 schema.pre("findOne", function () {
   this.populate('user_id', 'email name photo -_id')
-     .populate('product_id', 'title price -_id');
+     .populate('product_id', 'title price photo -_id');
 });
 
 const Cart = model(collection, schema);
