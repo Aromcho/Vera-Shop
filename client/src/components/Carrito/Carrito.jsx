@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { CartContext } from '../../context/CartContext.jsx';
+import DeleteIcon from '@mui/icons-material/Delete';
+import PaymentIcon from '@mui/icons-material/Payment';
 import "./Carrito.css";
 
 const Cart = () => {
@@ -83,7 +85,7 @@ const Cart = () => {
                         onClick={() => borrarProducto(item._id)}
                         className="remove-button"
                       >
-                        <i className="bi bi-trash"></i>
+                        <DeleteIcon /> {/* Icono de eliminar */}
                       </Button>
                     </div>
                   </Card.Body>
@@ -93,12 +95,12 @@ const Cart = () => {
           ))}
           <div className="total-container">
             <h4>Total: ${total.toFixed(2)}</h4>
-            <div>
-              <Button variant="custom-danger" onClick={() => borrarTodo()} className="total-button">
-                Vaciar carrito
+            <div className="total-buttons">
+              <Button variant="custom-danger" onClick={() => borrarTodo()} className="total-button checkout-button">
+                <DeleteIcon /> Vaciar carrito
               </Button>
-              <Button as={Link} to="/checkout" variant="custom-success" className="total-button">
-                Ir a pagar
+              <Button as={Link} to="/checkout" variant="custom-success" className="total-button checkout-button">
+                <PaymentIcon /> Ir a pagar
               </Button>
             </div>
           </div>
