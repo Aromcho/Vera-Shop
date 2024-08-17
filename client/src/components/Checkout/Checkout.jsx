@@ -35,8 +35,25 @@ const Checkout = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const validateFields = () => {
+    if (deliveryMethod === 'home') {
+      if (!name || !phoneNumber || !address || !city || !zipCode || !paymentMethod) {
+        Swal.fire('Campos incompletos', 'Por favor, completa todos los campos requeridos.', 'warning');
+        return false;
+      }
+    } else if (deliveryMethod === 'store') {
+      if (!name || !phoneNumber || !storePaymentOption) {
+        Swal.fire('Campos incompletos', 'Por favor, completa todos los campos requeridos.', 'warning');
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (!validateFields()) return;
+
     if (activeStep === steps.length - 1) {
       try {
         const userResponse = await axios.get('/api/sessions/online');
@@ -73,7 +90,7 @@ const Checkout = () => {
     switch (step) {
       case 0:
         return (
-          <Card className="checkout-card ">
+          <Card className="checkout-card">
             <Card.Body>
               <Card.Title as="h5">Resumen de la compra</Card.Title>
               <ListGroup variant="flush">
@@ -183,9 +200,26 @@ const Checkout = () => {
                 ) : (
                   <>
                     <h6>Retiro en Tienda</h6>
-                    <p className="checkout-description">
-                      Puedes retirar tu pedido en nuestra tienda ubicada en la Galería París. Por favor, selecciona cómo deseas realizar el pago.
-                    </p>
+                    <Form.Group controlId="formName" className="mt-3">
+                      <Form.Label>Nombre Completo</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Ingresa tu nombre completo"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                      />
+                    </Form.Group>
+                    <Form.Group controlId="formPhoneNumber" className="mt-3">
+                      <Form.Label>Número de Teléfono</Form.Label>
+                      <Form.Control
+                        type="tel"
+                        placeholder="Ingresa tu número de teléfono"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        required
+                      />
+                    </Form.Group>
                     <Form.Group controlId="formStorePaymentOption" className="mt-3">
                       <Form.Label>Opción de Pago</Form.Label>
                       <Form.Control
@@ -228,10 +262,18 @@ const Checkout = () => {
         {getStepContent(activeStep)}
         {activeStep > 0 && (
           <div className="d-flex justify-content-between mt-4">
-            <Button variant="custom" disabled={activeStep === 0} onClick={handleBack}>Atrás</Button>
-            <Button variant="custom" onClick={handleFormSubmit}>
-              {activeStep === steps.length - 1 ? 'Finalizar compra' : 'Siguiente'}
+            <Button variant="custom" disabled={activeStep === 0} onClick={handleBack}>
+              Atrás
             </Button>
+            {activeStep < steps.length - 1 ? (
+              <Button variant="custom" onClick={handleNext}>
+                Siguiente
+              </Button>
+            ) : (
+              <Button variant="custom" onClick={handleFormSubmit}>
+                Finalizar compra
+              </Button>
+            )}
           </div>
         )}
       </div>
