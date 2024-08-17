@@ -76,3 +76,22 @@
 [37mERROR[39m: orders validation failed: phoneNumber: Path `phoneNumber` is required.
 [37mERROR[39m: orders validation failed: phoneNumber: Path `phoneNumber` is required.
 [37mERROR[39m: orders validation failed: phoneNumber: Path `phoneNumber` is required.
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: orders validation failed: phoneNumber: Path `phoneNumber` is required.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: orders validation failed: phoneNumber: Path `phoneNumber` is required.
+[37mERROR[39m: orders validation failed: phoneNumber: Path `phoneNumber` is required.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: orders validation failed: phoneNumber: Path `phoneNumber` is required.
+[37mERROR[39m: User already exists with that email.
+[37mERROR[39m: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-201f039f074sm30707185ad.251 - gsmtp
+[37mERROR[39m: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-7c6b61e7424sm3604373a12.50 - gsmtp
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"

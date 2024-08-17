@@ -24,6 +24,19 @@ const OrderTracking = () => {
     fetchOrder();
   }, [orderId]);
 
+  const translateState = (state) => {
+    switch (state) {
+      case 'reserver':
+        return 'Reservado';
+      case 'payed':
+        return 'Pagado';
+      case 'delivered':
+        return 'Entregado';
+      default:
+        return state;
+    }
+  };
+
   if (error) {
     return <p className="error-message">{error}</p>;
   }
@@ -46,7 +59,7 @@ const OrderTracking = () => {
 
         <div className="order-details">
           <Typography variant="body1" className="detail-item">
-            <strong>Estado:</strong> {order.state}
+            <strong>Estado:</strong> {translateState(order.state)}
           </Typography>
           <Typography variant="body1" className="detail-item">
             <strong>Cantidad de productos:</strong> {order.quantity}
@@ -63,7 +76,6 @@ const OrderTracking = () => {
           <Typography variant="body1" className="detail-item">
             <strong>Método de Entrega:</strong> {order.deliveryMethod}
           </Typography>
-          
         </div>
 
         <Button

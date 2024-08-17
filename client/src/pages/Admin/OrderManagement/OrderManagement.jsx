@@ -64,11 +64,19 @@ const OrderManagement = () => {
                 <Card.Text>
                   <Card.Title>Pedido de {order.user_id ? order.user_id.name : 'Cliente desconocido'}</Card.Title>
                   <strong>Email:</strong> {order.user_id ? order.user_id.email : 'No disponible'}<br />
+                  <strong>Teléfono:</strong> {order.phoneNumber}<br />
                   <strong>Fecha:</strong> {new Date(order.createdAt).toLocaleDateString()}<br />
                   <strong>Total:</strong> ${order.ticket.toFixed(2)}<br />
                   <strong>Estado:</strong> {order.state}<br />
                   <strong>Método de Pago:</strong> {order.paymentMethod}<br />
                   <strong>Método de Entrega:</strong> {order.deliveryMethod}<br />
+                  {order.items && order.items.map((item, index) => (
+                    <div key={index}>
+                      <strong>Producto:</strong> {item.product_id.title}<br />
+                      <strong>Talle:</strong> {item.size}<br />
+                      <strong>Color:</strong> {item.color}<br />
+                    </div>
+                  ))}
                 </Card.Text>
                 <div className="d-flex justify-content-between">
                   <OverlayTrigger overlay={<Tooltip>Ver Detalles</Tooltip>}>
