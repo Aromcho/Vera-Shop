@@ -1,54 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Face.css';
 import ItemListContainer from '../ItemListContainer/ItemListContainer.jsx';
 import LocationSection from '../LocationSection/LocationSection.jsx';
-import FeaturedCategories from '../FeaturedCategories/FeaturedCategories.jsx'; // Importar el nuevo componente
+import FeaturedCategories from '../FeaturedCategories/FeaturedCategories.jsx';
+import ChatBubble from '../ChatBubble/ChatBubble';
+import ChatModal from '../ChatModal/ChatModal';
 
 const Face = () => {
+  const [showChatModal, setShowChatModal] = useState(false);
+
   return (
     <div>
       {/* Sección Hero */}
       <div className="hero d-flex align-items-center justify-content-center flex-column">
-    <div className="overlay w-100 d-flex align-items-center justify-content-center flex-column">
-      <h1 className="banner display-3 text-white p-2">Dolores Pidré</h1>
+        <div className="overlay w-100 d-flex align-items-center justify-content-center flex-column">
+          <h1 className="banner display-3 text-white p-2">Dolores Pidré</h1>
 
-      <div className="scrolling-text-container">
-        <p className="scrolling-text mb-0">Único local en Galería París. Av. Rivadavia 4975 local 67</p>
+          <div className="scrolling-text-container">
+            <p className="scrolling-text mb-0">Único local en Galería París. Av. Rivadavia 4975 local 67</p>
+          </div>
+
+          <p className="lead text-light">Descubre la Esencia de la Moda Italiana.</p>
+
+          <Link to="/products/real">
+            <Button variant="outline-light" size="lg">
+              Explora Nuestros Productos
+            </Button>
+          </Link>
+
+          <div className="social-icons mt-3">
+            <a href="https://www.instagram.com/dolorespidre/?hl=es" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline-light" size="lg" className="mx-2">
+                <i className="bi bi-instagram"></i>
+              </Button>
+            </a>
+            <a href="https://www.facebook.com/dolorespidre/" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline-light" size="lg" className="mx-2">
+                <i className="bi bi-facebook"></i>
+              </Button>
+            </a>
+          </div>
+        </div>
       </div>
 
-      <p className="lead text-light">Descubre la Esencia de la Moda Italiana.</p>
-
-      <Link to="/products/real">
-        <Button variant="outline-light" size="lg">
-          Explora Nuestros Productos
-        </Button>
-      </Link>
-
-      <div className="social-icons mt-3">
-        <a href="https://www.instagram.com/dolorespidre/?hl=es" target="_blank" rel="noopener noreferrer">
-          <Button variant="outline-light" size="lg" className="mx-2">
-            <i className="bi bi-instagram"></i>
-          </Button>
-        </a>
-        <a href="https://www.facebook.com/dolorespidre/" target="_blank" rel="noopener noreferrer">
-          <Button variant="outline-light" size="lg" className="mx-2">
-            <i className="bi bi-facebook"></i>
-          </Button>
-        </a>
-      </div>
-    </div>
-  </div>
       {/* Sección de Categorías Destacadas */}
       <FeaturedCategories />
 
-      {/* Seccion de ubicacion */}
-      
+      {/* Seccion de ubicación */}
       <Container className="mb-5">
         <LocationSection />
       </Container>
 
+      {/* Testimonios */}
       <div className="testimonials-section text-center my-5">
         <Container>
           <h2 className="mb-4">Lo Que Dicen Nuestros Clientes</h2>
@@ -87,6 +92,12 @@ const Face = () => {
           <i className="bi bi-whatsapp"></i>
         </a>
       </div>
+
+      {/* Burbuja de Chat */}
+      <ChatBubble onClick={() => setShowChatModal(true)} />
+
+      {/* Modal de Chat */}
+      <ChatModal show={showChatModal} onHide={() => setShowChatModal(false)} />
     </div>
   );
 };

@@ -1,0 +1,93 @@
+/* src/components/ChatModal/ChatModal.css */
+.chat-modal .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .chat-modal-header {
+    background-color: #075E54;
+    color: white;
+    text-align: center;
+  }
+  .chat-logo {
+    width: 50px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 15%;
+    margin: 10px auto;
+    margin-right: 10px;
+  }
+  .chat-modal-body {
+    background-color: #e5ddd5;
+    padding: 15px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .message-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+  
+  .message {
+    max-width: 80%;
+    padding: 8px 12px;
+    margin: 5px 0;
+    border-radius: 10px;
+    display: inline-block;
+    font-size: 0.9rem;
+  }
+  
+  .message.received {
+    background-color: #ffffff;
+    color: #000;
+    align-self: flex-start;
+    border-radius: 10px 10px 10px 0;
+  }
+  
+  .message.sent {
+    background-color: #DCF8C6;
+    color: #000;
+    align-self: flex-end;
+    border-radius: 10px 10px 0 10px;
+  }
+  
+  .message-input-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
+  }
+  
+  .message-input {
+    flex-grow: 1;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    resize: none;
+    box-shadow: none;
+    outline: none;
+    font-size: 0.9rem;
+  }
+  
+  .send-button {
+    background-color: #128C7E;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 6px 12px;
+    margin-left: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .send-button:disabled {
+    background-color: #b2dfdb;
+  }
+  
