@@ -84,7 +84,7 @@ const NavBar = () => {
       // Mostrar opciones para usuarios no autenticados
       return (
         <div className="auth-buttons">
-          <Button className="ms-1 auth-button" variant="dark" onClick={loginWithRedirect}>
+          <Button className="ms-1 auth-button" variant="dark">
             <p className='m-0'>Ingresar </p>
           </Button>
         </div>

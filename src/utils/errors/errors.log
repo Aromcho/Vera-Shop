@@ -621,3 +621,7 @@
 [37mERROR[39m: Invalid credentials
 [37mERROR[39m: Orders not found
 [37mERROR[39m: Orders not found
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "user_id" for model "carts"
+[37mERROR[39m: Orders not found
+[37mERROR[39m: Orders not found
