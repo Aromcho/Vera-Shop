@@ -7,7 +7,7 @@ const ChatModal = ({ show, onHide }) => {
   const [message, setMessage] = useState('');
 
   const handleSendMessage = () => {
-    const whatsappURL = `https://wa.me/5491149791377?text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/5491165785043?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, '_blank');
     onHide();
   };

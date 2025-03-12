@@ -11,7 +11,7 @@ const FeaturedCategories = () => {
 
   return (
     <Container className="mt-5 d-flex align-items-center justify-content-center flex-column">
-      <h3 className="banner display-3 text-dark text-center pb-5">Más de 50 años de trayectoria en Caballito</h3>
+      <h3 className="banner display-3 text-dark text-center pb-5">Comprá online, recibí en todo el país.</h3>
 
       <Row className="category-row mb-3">
         <Col md={7} className="category-img">

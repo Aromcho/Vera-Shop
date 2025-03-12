@@ -98,7 +98,7 @@ const NavBar = () => {
         <div className="d-flex align-items-center w-100 justify-content-between">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Brand as={Link} to="/" className="navbar-brand m-0">
-            <img src="/img/logo.jpeg" alt="Logo" className="logo m-0" />
+            <img src="/img/logo.png" alt="Logo" className="logo m-0" />
           </Navbar.Brand>
           <div className="d-flex align-items-center">
             <FaSearch className="search-icon" onClick={handleSearchClick} />

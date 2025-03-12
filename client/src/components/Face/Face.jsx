@@ -16,13 +16,13 @@ const Face = () => {
       {/* Sección Hero */}
       <div className="hero d-flex align-items-center justify-content-center flex-column">
         <div className="overlay w-100 d-flex align-items-center justify-content-center flex-column">
-          <h1 className="banner display-3 text-white p-2">Dolores Pidré</h1>
+          <h1 className="banner display-3 text-white p-2">Vera Shop</h1>
 
           <div className="scrolling-text-container">
-            <p className="scrolling-text mb-0">Único local en Galería París. Av. Rivadavia 4975 local 67</p>
+            <p className="scrolling-text mb-0">Disponible solo en nuestra tienda online </p>
           </div>
 
-          <p className="lead text-light">Descubre la Esencia de la Moda Italiana.</p>
+          <p className="lead text-light">Donde comienza tu mejor look.</p>
 
           <Link to="/products/real">
             <Button variant="outline-light" size="lg">
@@ -88,7 +88,7 @@ const Face = () => {
 
       {/* Flotador de WhatsApp */}
       <div className="floating-icons">
-        <a href="https://wa.me/5491149791377" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
+        <a href="https://wa.me/5491165785043" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
           <i className="bi bi-whatsapp"></i>
         </a>
       </div>
