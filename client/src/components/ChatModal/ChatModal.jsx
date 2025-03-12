@@ -17,8 +17,8 @@ const ChatModal = ({ show, onHide }) => {
       <Modal.Header closeButton className="chat-modal-header">
         <Modal.Title>
             {/* imagen para el chat */}
-            <img src="/img/logo.jpeg" alt="Dolores Pidre" className="chat-logo" />
-            Dolores Pidre
+            <img src="/img/logo.png" alt="Dolores Pidre" className="chat-logo" />
+            Vera Shop
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="chat-modal-body">

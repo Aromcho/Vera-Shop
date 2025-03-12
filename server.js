@@ -34,7 +34,7 @@ if (cluster.isMaster) {
     });
 } else {
     const server = express();
-    const port = 8080;
+    const port = 2080;
 
     const ready = async () => {
         console.log(`Worker ${process.pid} is running on port ${port}`);
